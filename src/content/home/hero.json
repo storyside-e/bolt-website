@@ -1,0 +1,7 @@
+{
+  "stats": [
+    { "label": "Onboarding Calls", "value": "0" },
+    { "label": "Setup", "value": "< 10 min" },
+    { "label": "Time to First Dispatch", "value": "< 20 min" }
+  ]
+}

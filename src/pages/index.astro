@@ -1,0 +1,17 @@
+---
+import LandingExperience from "../components/landing/LandingExperience.vue";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}/favicon.ico`.replace(/\/+/g, "/")} />
+    <title>Bolt TMS</title>
+  </head>
+  <body>
+    <LandingExperience client:load />
+  </body>
+</html>

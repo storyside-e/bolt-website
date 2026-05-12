@@ -1,0 +1,269 @@
+{
+  "featured": [
+    {
+      "description": "Hours of service, location, and vehicle telemetry from your ELD land directly on the dispatch record — without another portal for dispatch to log into.",
+      "mark": "ELD",
+      "markStyle": "default",
+      "name": "HOS, GPS, and trip data — on the dispatch.",
+      "points": [
+        "Dispatch trips to drivers from a single workflow.",
+        "HOS, location, and vehicle status return to the dispatch record.",
+        "Fleet movement is visible from the dispatch itself."
+      ],
+      "sync": [
+        "Two-way sync",
+        "Settled in seconds"
+      ],
+      "type": "ELD & Telematics",
+      "vendors": [
+        {
+          "color": "#1B1A22",
+          "mark": "s",
+          "name": "Samsara",
+          "style": "lower",
+          "logo": "integrations/samsara.webp"
+        },
+        {
+          "color": "#FF463D",
+          "mark": "M",
+          "name": "Motive",
+          "logo": "integrations/motive.jpg"
+        },
+        {
+          "color": "#00B388",
+          "mark": "g",
+          "name": "Geotab",
+          "style": "lower",
+          "logo": "integrations/geotab.svg"
+        },
+        {
+          "color": "#2D67A8",
+          "mark": "o",
+          "name": "Omnitracs",
+          "style": "lower",
+          "logo": "integrations/omnitracs.svg"
+        },
+        {
+          "color": "#101111",
+          "mark": "B",
+          "name": "Bolt Driver App",
+          "logo": "integrations/bolt-driver-app.png"
+        }
+      ]
+    },
+    {
+      "description": "Pull active loads directly from the boards you already pay for. Bolt scores each one against your lanes, equipment, and target rate before you commit a truck.",
+      "mark": "LB",
+      "markStyle": "default",
+      "name": "Live freight, scored against your fleet.",
+      "points": [
+        "Live freight lands in Bolt without copy-paste.",
+        "Loads score against your lanes, equipment, and rate target.",
+        "Booked loads become trips on the dispatch automatically."
+      ],
+      "sync": [
+        "Live freight",
+        "One-click book"
+      ],
+      "type": "Load Boards",
+      "vendors": [
+        {
+          "color": "#013A5C",
+          "mark": "DAT",
+          "name": "DAT",
+          "style": "compact",
+          "logo": "integrations/dat.png"
+        },
+        {
+          "color": "#DA291C",
+          "mark": "T",
+          "name": "Truckstop",
+          "logo": "integrations/truckstop.webp"
+        },
+        {
+          "color": "#00A651",
+          "mark": "123",
+          "name": "123Loadboard",
+          "style": "compact",
+          "logo": "integrations/123loadboard.png"
+        },
+        {
+          "color": "#FF6B35",
+          "mark": "TP",
+          "name": "Trucker Path",
+          "style": "compact",
+          "logo": "integrations/trucker-path.avif"
+        },
+        {
+          "color": "#000000",
+          "mark": "U",
+          "name": "Uber Freight",
+          "logo": "integrations/uber-freight.png",
+          "logoStyle": "dark-surface"
+        }
+      ]
+    },
+    {
+      "description": "Delivered freight becomes invoice-ready in accounting — customers, AR, and documentation stay tied to the dispatch — including via a native QuickBooks Online connection when you use it.",
+      "mark": "AC",
+      "markStyle": "default",
+      "name": "Invoice-ready freight, posted to your books.",
+      "points": [
+        "Invoices generate automatically from settled dispatches.",
+        "Customer and AR status remain tied to the dispatch record.",
+        "Dispatch and accounting reference a single source."
+      ],
+      "sync": [
+        "Two-way sync",
+        "Settled in seconds"
+      ],
+      "type": "Accounting",
+      "vendors": [
+        {
+          "color": "#2CA01C",
+          "mark": "qb",
+          "name": "QuickBooks\nOnline",
+          "style": "circle compact lower",
+          "logo": "integrations/quickbooks.png"
+        },
+        {
+          "color": "#2CA01C",
+          "mark": "qb",
+          "name": "QuickBooks\nDesktop",
+          "style": "circle compact lower",
+          "logo": "integrations/quickbooks.png"
+        },
+        {
+          "color": "#13B5EA",
+          "mark": "X",
+          "name": "Xero",
+          "style": "circle",
+          "logo": "integrations/xero.svg"
+        },
+        {
+          "color": "#1A1A1A",
+          "mark": "N",
+          "name": "NetSuite",
+          "logo": "integrations/netsuite.svg",
+          "logoStyle": "dark-surface"
+        },
+        {
+          "color": "#00DC06",
+          "mark": "s",
+          "name": "Sage Intacct",
+          "style": "lower",
+          "logo": "integrations/sage-intacct.svg"
+        }
+      ]
+    },
+    {
+      "description": "Approved invoices submit to your factor, fuel-card transactions land on driver settlements, and carrier payments run without leaving the dispatch record.",
+      "mark": "FF",
+      "markStyle": "default",
+      "name": "Money flows tied to the haul that earned them.",
+      "points": [
+        "Approved invoices submit to your factor in one workflow.",
+        "Fuel transactions land on driver settlements automatically.",
+        "Carrier and driver pay run without leaving Bolt."
+      ],
+      "sync": [
+        "Two-way sync",
+        "Same-day funding"
+      ],
+      "type": "Factoring & Fuel",
+      "vendors": [
+        {
+          "color": "#003F87",
+          "mark": "OTR",
+          "name": "OTR Solutions",
+          "style": "compact",
+          "logo": "integrations/otr-solutions.svg",
+          "logoStyle": "dark-surface"
+        },
+        {
+          "color": "#173E5E",
+          "mark": "T",
+          "name": "TriumphPay",
+          "logo": "integrations/triumphpay.svg",
+          "logoStyle": "dark-surface"
+        },
+        {
+          "color": "#1F4E79",
+          "mark": "WEX",
+          "name": "WEX",
+          "style": "compact",
+          "logo": "integrations/wex.webp"
+        },
+        {
+          "color": "#002F5F",
+          "mark": "C",
+          "name": "Comdata",
+          "logo": "integrations/comdata.png"
+        },
+        {
+          "color": "#BE2026",
+          "mark": "RTS",
+          "name": "RTS",
+          "style": "compact",
+          "logo": "integrations/rts.svg"
+        }
+      ]
+    }
+  ],
+  "handoffs": [
+    {
+      "destination": "ELD & GPS",
+      "description": "Trip plans, stop order, and driver-facing work publish out to in-cab ELD and navigation before wheels turn — including native connectivity for fleets on stacks such as Samsara.",
+      "icon": "navigation",
+      "source": "Dispatch",
+      "title": "Plans leave Bolt for the cab."
+    },
+    {
+      "destination": "Bolt",
+      "description": "Hours, GPS traces, and on-road state flow from connected telematics and ELD categories back into the dispatch record — without standing up a parallel driver portal.",
+      "icon": "truck",
+      "source": "Position & HOS",
+      "title": "Field telemetry lands on the dispatch."
+    },
+    {
+      "destination": "AR & invoicing",
+      "description": "Settled dispatches produce invoice-ready documents and hand off to your accounting layer — such as QuickBooks Online where you connect it — so finance receives structured billing, not ad-hoc exports.",
+      "icon": "receipt",
+      "source": "Billing",
+      "title": "Dispatches become invoice-ready artifacts."
+    },
+    {
+      "destination": "Bolt",
+      "description": "Cleared, partial, or past-due — cash and AR aging stay tied to the haul that earned the receivable, including categories such as payment gateways and collections workflows you already use.",
+      "icon": "wallet",
+      "source": "Invoices & payments",
+      "title": "Cash outcomes stay with the haul."
+    }
+  ],
+  "roadmap": [
+    {
+      "name": "Motive",
+      "status": "Q3"
+    },
+    {
+      "name": "EROAD",
+      "status": "Q3"
+    },
+    {
+      "name": "Geotab",
+      "status": "Q4"
+    },
+    {
+      "name": "Sage Intacct",
+      "status": "Q4"
+    },
+    {
+      "name": "Xero",
+      "status": "Q4"
+    },
+    {
+      "name": "Stripe",
+      "status": "Live"
+    }
+  ]
+}

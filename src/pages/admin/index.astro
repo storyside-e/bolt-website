@@ -1,0 +1,23 @@
+---
+// Mirrors public/admin/index.html. The static file works in production preview
+// and in deployed builds, but Astro's dev server does not auto-resolve
+// `public/admin/` to its `index.html`, so requests to `/admin/` 404 in `astro
+// dev`. Registering this Astro page gives `/admin/` a real route in dev.
+// Decap loads `config.yml` relative to the page URL, so this MUST live at
+// `src/pages/admin/index.astro` (directory route, trailing slash) — not
+// `src/pages/admin.astro` — otherwise the CMS would fetch `/config.yml`
+// instead of `/admin/config.yml`.
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Bolt Marketing CMS</title>
+  </head>
+  <body>
+    <div id="nc-root"></div>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" is:inline></script>
+  </body>
+</html>

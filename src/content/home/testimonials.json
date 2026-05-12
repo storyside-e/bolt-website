@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "quote": "We stopped running the day off three sheets. Operations and the office finally see the same dispatch—and accounting closes the week without a hunt.",
+      "name": "Marisol Cardenas",
+      "role": "Director of Operations",
+      "company": "Cardenas Transit · 38 trucks",
+      "initials": "MC",
+      "outcome": { "value": "−42%", "label": "Friday cleanup time" },
+      "lead": true
+    },
+    {
+      "quote": "Move a stop and the trip card just updates—the dock and the cab read the same thing.",
+      "name": "Devon Whitaker",
+      "role": "Dispatch Manager",
+      "company": "Northbound Logistics · 64 trucks",
+      "initials": "DW",
+      "outcome": { "value": "3.4×", "label": "Replans / day" }
+    },
+    {
+      "quote": "I am not retyping rates into accounting — tools like QuickBooks — on Friday nights anymore. Delivered freight just becomes invoice-ready.",
+      "name": "Renata Okafor",
+      "role": "Owner / Operator",
+      "company": "Okafor Freight Co · 12 trucks",
+      "initials": "RO",
+      "outcome": { "value": "−18 hrs", "label": "Weekly book closing" }
+    },
+    {
+      "quote": "Onboarding took three weeks, not three quarters. Pay rules and customer accessorials moved over without a fight.",
+      "name": "Jian-Wei Holcomb",
+      "role": "VP of Operations",
+      "company": "Atlas Equipment Carriers · 110 trucks",
+      "initials": "JH",
+      "outcome": { "value": "21 days", "label": "Cutover to live" }
+    }
+  ]
+}

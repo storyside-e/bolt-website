@@ -1,0 +1,207 @@
+# Decap CMS configuration for the Bolt marketing site.
+#
+# AUTH (DEFERRED): a later phase will replace this backend block with a real
+# GitHub OAuth or Netlify Identity setup. Until then, you must:
+#   1. Replace `TBD/TBD` with the real `org/repo` once the site is on GitHub.
+#   2. Set up an OAuth provider (Netlify Identity, a GitHub OAuth proxy, etc.)
+#      and update this file accordingly.
+#   3. Remove `local_backend: true` for production.
+#
+# LOCAL TESTING WITHOUT AUTH:
+#   Run `npx decap-server` in a second terminal, then start `npm run dev` and
+#   open http://localhost:4321/admin/. The local proxy writes JSON edits
+#   straight to disk while `local_backend: true` is set.
+backend:
+  name: github
+  repo: TBD/TBD
+  branch: main
+
+# Lets `npx decap-server` write to the working tree. Remove for production.
+local_backend: true
+
+# All content lives under src/content. Media is not editable from the CMS yet.
+media_folder: "public/media"
+public_folder: "/media"
+
+# Reusable list of icon slugs. The frontend has a hard-coded allowlist that
+# MUST stay in sync with this list (`src/content/icons.ts`).
+# Adding a new icon means: import the lucide component, add it to the
+# ICON_REGISTRY map, and add the slug here.
+collections:
+  - name: home
+    label: "Homepage"
+    editor:
+      preview: false
+    files:
+      - name: hero
+        label: "Hero"
+        file: "src/content/home/hero.json"
+        format: json
+        fields:
+          - name: stats
+            label: "Hero stats"
+            widget: list
+            min: 1
+            fields:
+              - { name: label, label: "Label", widget: string, required: true }
+              - { name: value, label: "Value", widget: string, required: true }
+
+      - name: capabilities
+        label: "Capabilities"
+        file: "src/content/home/capabilities.json"
+        format: json
+        fields:
+          - name: items
+            label: "Capabilities"
+            widget: list
+            min: 1
+            fields:
+              - name: icon
+                label: "Icon"
+                widget: select
+                required: true
+                options:
+                  - bar-chart-3
+                  - navigation
+                  - package
+                  - receipt
+                  - settings
+                  - truck
+                  - wallet
+              - { name: label, label: "Tab label", widget: string, required: true }
+              - { name: summary, label: "Summary", widget: string, required: true }
+              - { name: title, label: "Title", widget: string, required: true }
+              - { name: description, label: "Description", widget: text, required: true }
+              - name: metrics
+                label: "Metrics"
+                widget: list
+                min: 1
+                fields:
+                  - { name: label, label: "Label", widget: string, required: true }
+                  - { name: value, label: "Value", widget: string, required: true }
+              - { name: pull, label: "Pull quote", widget: string, required: true }
+              - name: artifact
+                label: "Artifact"
+                widget: object
+                fields:
+                  - { name: kind, label: "Kind", widget: string, required: true }
+                  - { name: heading, label: "Heading", widget: string, required: true }
+                  - name: rows
+                    label: "Rows"
+                    widget: list
+                    min: 1
+                    summary: "{{fields.label}} {{fields.tag}}"
+                    # Row shape varies per artifact kind (board / stops / invoice / config).
+                    # Editors should keep the existing keys for the matching kind.
+                    fields:
+                      - { name: tag, label: "Tag", widget: string, required: false }
+                      - { name: driver, label: "Driver", widget: string, required: false }
+                      - { name: state, label: "State", widget: string, required: false }
+                      - { name: tone, label: "Tone", widget: string, required: false }
+                      - { name: label, label: "Label", widget: string, required: false }
+                      - { name: place, label: "Place", widget: string, required: false }
+                      - { name: time, label: "Time", widget: string, required: false }
+                      - { name: value, label: "Value", widget: string, required: false }
+                      - { name: emphasis, label: "Emphasis", widget: boolean, required: false, default: false }
+
+      - name: integrations
+        label: "Integrations"
+        file: "src/content/home/integrations.json"
+        format: json
+        fields:
+          - name: featured
+            label: "Featured integrations"
+            widget: list
+            min: 1
+            fields:
+              - { name: name, label: "Name", widget: string, required: true }
+              - { name: type, label: "Type", widget: string, required: true }
+              - { name: description, label: "Description", widget: text, required: true }
+              - { name: mark, label: "Mark", widget: string, required: true }
+              - { name: markStyle, label: "Mark style", widget: string, required: true }
+              - name: points
+                label: "Points"
+                widget: list
+                min: 1
+                field: { name: point, label: "Point", widget: string }
+          - name: handoffs
+            label: "Handoffs"
+            widget: list
+            min: 1
+            fields:
+              - { name: title, label: "Title", widget: string, required: true }
+              - { name: source, label: "Source", widget: string, required: true }
+              - { name: destination, label: "Destination", widget: string, required: true }
+              - { name: description, label: "Description", widget: text, required: true }
+              - name: icon
+                label: "Icon"
+                widget: select
+                required: true
+                options:
+                  - bar-chart-3
+                  - navigation
+                  - package
+                  - receipt
+                  - settings
+                  - truck
+                  - wallet
+          - name: roadmap
+            label: "Partner roadmap"
+            widget: list
+            min: 1
+            fields:
+              - { name: name, label: "Partner", widget: string, required: true }
+              - { name: status, label: "Status", widget: string, required: true }
+
+      - name: testimonials
+        label: "Testimonials"
+        file: "src/content/home/testimonials.json"
+        format: json
+        fields:
+          - name: items
+            label: "Testimonials"
+            widget: list
+            min: 1
+            fields:
+              - { name: quote, label: "Quote", widget: text, required: true }
+              - { name: name, label: "Name", widget: string, required: true }
+              - { name: role, label: "Role", widget: string, required: true }
+              - { name: company, label: "Company", widget: string, required: true }
+              - { name: initials, label: "Initials", widget: string, required: true }
+              - { name: lead, label: "Lead testimonial?", widget: boolean, required: false, default: false }
+              - name: outcome
+                label: "Outcome"
+                widget: object
+                fields:
+                  - { name: value, label: "Value", widget: string, required: true }
+                  - { name: label, label: "Label", widget: string, required: true }
+
+      - name: footer
+        label: "Footer"
+        file: "src/content/home/footer.json"
+        format: json
+        fields:
+          - name: columns
+            label: "Columns"
+            widget: list
+            min: 1
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: true }
+              - name: links
+                label: "Links"
+                widget: list
+                min: 1
+                fields:
+                  - { name: label, label: "Label", widget: string, required: true }
+                  - { name: href, label: "Href", widget: string, required: true }
+
+      - name: demo
+        label: "Demo form"
+        file: "src/content/home/demo.json"
+        format: json
+        fields:
+          - name: fleetSizeOptions
+            label: "Fleet size options"
+            widget: list
+            min: 1
+            field: { name: option, label: "Option", widget: string }

@@ -1,0 +1,93 @@
+{
+  "items": [
+    {
+      "icon": "bar-chart-3",
+      "label": "Dispatch",
+      "summary": "Cut morning huddle time in half.",
+      "title": "Dispatch handoff in 5 minutes, not 50.",
+      "description": "Open dispatches, free drivers, in-transit trucks, and late stops on one screen — so dispatchers stop hunting and start handing off.",
+      "metrics": [
+        { "label": "Best for", "value": "dispatch & planners" },
+        { "label": "Replaces", "value": "status spreadsheets" },
+        { "label": "Workflow", "value": "plan to trip" }
+      ],
+      "pull": "Plan once. Hand off once. Stop chasing updates across three apps.",
+      "artifact": {
+        "kind": "board",
+        "heading": "Today · 14 dispatches",
+        "rows": [
+          { "tag": "SHP-218", "driver": "M. Calderón", "state": "En route", "tone": "go" },
+          { "tag": "SHP-219", "driver": "R. Okafor", "state": "At dock", "tone": "wait" },
+          { "tag": "SHP-220", "driver": "Unassigned", "state": "Needs driver", "tone": "flag" },
+          { "tag": "SHP-221", "driver": "J. Whitaker", "state": "Delivered", "tone": "done" }
+        ]
+      }
+    },
+    {
+      "icon": "package",
+      "label": "Freight",
+      "summary": "Detailed dispatch records that scale with complexity.",
+      "title": "Multi-stop dispatches, customer rules, and documentation in one place.",
+      "description": "Stops, drops, hooks, accessorials, customer rules, and documentation all attach to the dispatch itself — preserved through replans and handoffs.",
+      "metrics": [
+        { "label": "Handles", "value": "multi-stop" },
+        { "label": "Holds", "value": "documents" }
+      ],
+      "pull": "When a dispatch grows complex, the record grows with it — without losing context.",
+      "artifact": {
+        "kind": "stops",
+        "heading": "SHP-220 · 4 stops",
+        "rows": [
+          { "label": "Pickup", "place": "Murfreesboro, TN", "time": "06:40" },
+          { "label": "Drop", "place": "Knoxville, TN", "time": "11:12" },
+          { "label": "Hook", "place": "Wytheville, VA", "time": "15:45" },
+          { "label": "Final", "place": "State College, PA", "time": "21:08" }
+        ]
+      }
+    },
+    {
+      "icon": "receipt",
+      "label": "Money",
+      "summary": "Delivered to invoiced, automatically.",
+      "title": "Billing, settled.",
+      "description": "Rates, accessorials, expenses, and approvals flow from delivered freight into accounting and AR — including QuickBooks Online where you connect it. Driver pay calculates on the same line.",
+      "metrics": [
+        { "label": "Accounting / AR", "value": "Such as QuickBooks Online" },
+        { "label": "Tracks", "value": "payments" }
+      ],
+      "pull": "Delivered to deposited. No bridge spreadsheet, no Friday cleanup.",
+      "artifact": {
+        "kind": "invoice",
+        "heading": "INV-1048 · Atlas Equipment",
+        "rows": [
+          { "label": "Linehaul · 711 mi", "value": "$2,184.00" },
+          { "label": "Detention · 2.5 hr", "value": "$187.50" },
+          { "label": "Fuel surcharge", "value": "$148.62" },
+          { "label": "Total", "value": "$2,520.12", "emphasis": true }
+        ]
+      }
+    },
+    {
+      "icon": "settings",
+      "label": "Your rules",
+      "summary": "Kill the \"that's just how the system works\" excuse.",
+      "title": "Built around your operation, not a template.",
+      "description": "Terminals, customer accessorials, pay rules, integrations — configured to your operation. Not a template that hammers you into someone else's flow.",
+      "metrics": [
+        { "label": "Configures", "value": "terminals" },
+        { "label": "Connects", "value": "your workflow" }
+      ],
+      "pull": "Built to your operation, not against it. The way it should have been the first time.",
+      "artifact": {
+        "kind": "config",
+        "heading": "Pay rule · Linehaul",
+        "rows": [
+          { "label": "Driver type", "value": "Company · Lease" },
+          { "label": "Pay basis", "value": "28% revenue · 0.62/mi" },
+          { "label": "Accessorials", "value": "Detention · Layover" },
+          { "label": "Approval", "value": "Operations · Owner" }
+        ]
+      }
+    }
+  ]
+}

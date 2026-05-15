@@ -11,9 +11,12 @@ describe("LandingExperience", () => {
   it("renders the hero copy", () => {
     const wrapper = mountLanding();
 
+    // NOTE: The pre-header, header nav, and footer are now rendered by the
+    // shared Astro chrome (`MarketingChromeShell.astro`). This Vue component
+    // is just the in-page content, so we no longer assert on chrome strings
+    // ("Built in Nashville, TN", contact emails, nav labels, etc.) here.
     expect(wrapper.text()).toContain("We built the TMS we couldn’t find.");
-    expect(wrapper.text()).toContain("What we built");
-    expect(wrapper.text()).toContain("Built in Nashville, TN");
+    expect(wrapper.text()).toContain("What we built"); // section heading in body
     expect(wrapper.text()).not.toContain("Know which shipments need attention first");
     expect(wrapper.text()).not.toContain(
       "Cover more shipments with the fleet you already have"
@@ -26,7 +29,6 @@ describe("LandingExperience", () => {
     expect(wrapper.text()).toContain("Bolt Driver App");
     expect(wrapper.text()).toContain("Why Bolt?");
     expect(wrapper.text()).toContain("Three ways teams buy TMS software");
-    expect(wrapper.text()).toContain("support@boltsystem.com");
     expect(wrapper.text()).toContain("TriumphPay");
     expect(wrapper.text()).not.toContain(
       "QuickBooks Online (accounting) and Samsara (telematics) are among the first native connectors"
@@ -45,32 +47,9 @@ describe("LandingExperience", () => {
     expect(wrapper.find('[data-test="landing-preview-url"]').text()).toBe(
       "app.bolttms.com/dashboard"
     );
-    expect(wrapper.find("#landing-top").classes()).toContain("landing-light");
     expect(wrapper.find('[data-test="landing-sidebar-settings"]').exists()).toBe(
       false
     );
-  });
-
-  it("toggles light/dark mode via the theme button", async () => {
-    const wrapper = mountLanding();
-
-    // Light is the default.
-    expect(wrapper.find("#landing-top").classes()).toContain("landing-light");
-
-    await wrapper
-      .find('[aria-label="Switch landing page to dark mode"]')
-      .trigger("click");
-
-    expect(wrapper.find("#landing-top").classes()).toContain("landing-dark");
-    expect(
-      wrapper.find('[aria-label="Switch landing page to light mode"]').exists()
-    ).toBe(true);
-
-    await wrapper
-      .find('[aria-label="Switch landing page to light mode"]')
-      .trigger("click");
-
-    expect(wrapper.find("#landing-top").classes()).toContain("landing-light");
   });
 
   it("switches between dashboard, shipments, shipment detail, and invoicing via the sidebar", async () => {

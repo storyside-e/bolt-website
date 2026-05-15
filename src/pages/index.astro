@@ -1,17 +1,41 @@
 ---
 import LandingExperience from "../components/landing/LandingExperience.vue";
+import MarketingChromeShell from "../components/marketing/MarketingChromeShell.astro";
 import "../styles/global.css";
+
+const iconHref = `${import.meta.env.BASE_URL}favicon.ico`.replace(/\/+/g, "/");
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}/favicon.ico`.replace(/\/+/g, "/")} />
-    <title>Bolt TMS</title>
-  </head>
-  <body>
-    <LandingExperience client:load />
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href={iconHref} />
+        <title>Bolt TMS</title>
+    </head>
+    <body>
+        <div
+            id="landing-top"
+            class="landing-page landing-light min-h-screen overflow-x-hidden bg-[#050606] text-white"
+        >
+            <script is:inline>
+                (function () {
+                    try {
+                        var stored = localStorage.getItem("bolt-landing-theme");
+                        if (stored === "dark") {
+                            var el = document.getElementById("landing-top");
+                            if (el) {
+                                el.classList.remove("landing-light");
+                                el.classList.add("landing-dark");
+                            }
+                        }
+                    } catch (_) {}
+                })();
+            </script>
+            <MarketingChromeShell currentPath="/">
+                <LandingExperience client:load />
+            </MarketingChromeShell>
+        </div>
+    </body>
 </html>

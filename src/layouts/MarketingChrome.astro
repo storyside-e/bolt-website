@@ -1,10 +1,6 @@
 ---
-import contact from "../content/home/contact.json";
-import footerData from "../content/home/footer.json";
 import "../styles/global.css";
-import logoUrl from "../assets/img/logo-full.png?url";
-import logoDarkUrl from "../assets/img/logo-full-yellow-white.png?url";
-import ScheduleDemoIsland from "../components/marketing/ScheduleDemoIsland.vue";
+import MarketingChromeShell from "../components/marketing/MarketingChromeShell.astro";
 
 type Props = {
     title: string;
@@ -16,23 +12,8 @@ const {
     description = "Bolt TMS for trucking carriers — self-serve and live in an hour.",
 } = Astro.props;
 
-const withBase = (path: string) => {
-    const base = import.meta.env.BASE_URL || "/";
-    const root = base.replace(/\/$/, "");
-    const p = path.startsWith("/") ? path : `/${path}`;
-    return root ? `${root}${p}` : p;
-};
-
 const iconHref = `${import.meta.env.BASE_URL}favicon.ico`.replace(/\/+/g, "/");
-const c = contact;
-const year = new Date().getFullYear();
-
-// Theme-aware via .marketing-nav-schedule rule in landing-page.css.
-const scheduleDemoNavButtonClass =
-    "marketing-nav-schedule hidden h-9 shrink-0 items-center rounded-full border px-3.5 text-[12px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] sm:inline-flex md:px-4";
-
-// Match the home page where light is the default; an inline script swaps to
-// dark when the user previously toggled it (stored under `bolt-landing-theme`).
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -45,238 +26,31 @@ const scheduleDemoNavButtonClass =
         <title>{title}</title>
     </head>
     <body>
-        <script is:inline>
-            (function () {
-                try {
-                    var stored = localStorage.getItem("bolt-landing-theme");
-                    if (stored === "dark") {
-                        var el = document.getElementById("landing-top");
-                        if (el) {
-                            el.classList.remove("landing-light");
-                            el.classList.add("landing-dark");
-                        }
-                    }
-                } catch (_) {}
-            })();
-        </script>
         <div
             id="landing-top"
             class="landing-page landing-light min-h-screen overflow-x-hidden bg-[#050606] text-white"
         >
-            <div class="landing-preheader marketing-preheader">
-                <div
-                    class="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 py-2 text-[11px] leading-snug sm:justify-between sm:px-8 sm:text-[12px] lg:px-12 xl:px-16"
-                >
-                    <div
-                        class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-start"
-                    >
-                        <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] opacity-65">{c.sales.label}</span>
-                        <a href={c.sales.phoneHref} class="tabular-nums hover:underline">{c.sales.phoneDisplay}</a>
-                        <span class="opacity-40" aria-hidden="true">·</span>
-                        <a href={c.sales.emailHref} class="break-all hover:underline">{c.sales.emailDisplay}</a>
-                    </div>
-                    <div
-                        class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-end"
-                    >
-                        <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] opacity-65">{c.support.label}</span>
-                        <a href={c.support.phoneHref} class="tabular-nums hover:underline">{c.support.phoneDisplay}</a>
-                        <span class="opacity-40" aria-hidden="true">·</span>
-                        <a href={c.support.emailHref} class="break-all hover:underline">{c.support.emailDisplay}</a>
-                    </div>
-                </div>
-            </div>
-
-            <header
-                class="landing-site-header supports-[backdrop-filter]:bg-[#070808]/80 sticky top-0 z-40 border-b border-white/10 bg-[#070808]/90 backdrop-blur-xl backdrop-saturate-150"
-            >
-                <nav
-                    class="relative mx-auto flex h-[72px] w-full max-w-[1240px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16"
-                    aria-label="Public navigation"
-                >
-                    <a
-                        href={withBase("/")}
-                        class="flex items-center gap-2"
-                        aria-label="Bolt TMS home"
-                    >
-                        <img
-                            src={logoUrl}
-                            alt="Bolt TMS"
-                            class="marketing-chrome-logo--light h-7 w-auto"
-                            width="120"
-                            height="28"
-                        />
-                        <img
-                            src={logoDarkUrl}
-                            alt="Bolt TMS"
-                            class="marketing-chrome-logo--dark h-7 w-auto"
-                            width="120"
-                            height="28"
-                            aria-hidden="true"
-                        />
-                    </a>
-
-                    <div
-                        class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-[12px] font-medium text-white/55 lg:flex xl:gap-8"
-                    >
-                        <a href={withBase("/")} class="transition hover:text-white">Home</a>
-                        <a href={withBase("/#features")} class="transition hover:text-white"
-                            >What we built</a
-                        >
-                        <a href={withBase("/#integrations")} class="transition hover:text-white"
-                            >Integrations</a
-                        >
-                        <a href={withBase("/pricing")} class="transition hover:text-white">Pricing</a>
-                        <a href={withBase("/contact")} class="transition hover:text-white">Contact</a>
-                    </div>
-
-                    <div class="flex items-center gap-1.5 sm:gap-2">
-                        <button
-                            type="button"
-                            id="marketing-theme-toggle"
-                            class="landing-theme-toggle inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:text-white"
-                            aria-label="Toggle landing page theme"
-                            data-theme-toggle
-                        >
-                            <svg
-                                data-theme-icon="moon"
-                                class="size-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"
-                                ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg
-                            >
-                            <svg
-                                data-theme-icon="sun"
-                                class="size-4 hidden"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"
-                                ><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg
-                            >
-                        </button>
-                        <a
-                            href="https://app.bolttms.com/"
-                            class="hidden rounded-md px-2.5 py-2 text-[12px] font-medium text-white/55 hover:text-white xl:inline-flex"
-                            >Sign in</a
-                        >
-                        <ScheduleDemoIsland
-                            client:load
-                            theme="light"
-                            buttonClass={scheduleDemoNavButtonClass}
-                        />
-                        <a
-                            href="https://app.bolttms.com/register?step=registration"
-                            class="landing-cta inline-flex h-9 shrink-0 items-center rounded-full bg-white px-4 text-[12px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] active:translate-y-px sm:h-10 sm:px-5"
-                            ><span class="hidden sm:inline">Start field test</span><span class="sm:hidden">Field test</span></a
-                        >
-                    </div>
-                </nav>
-            </header>
-
-            <main
-                class="landing-main marketing-subpage-main relative z-10 mx-auto max-w-[1240px] px-5 pt-7 pb-12 sm:px-8 sm:pt-8 sm:pb-12 lg:px-12 xl:px-16"
-            >
-                <slot />
-            </main>
-
-            <footer
-                class="landing-footer border-t border-white/10 bg-[#050606] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 xl:px-16"
-            >
-                <div class="mx-auto max-w-[1240px]">
-                    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-                        {
-                            footerData.columns.map((col) => (
-                                <div>
-                                    <h3 class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">
-                                        {col.heading}
-                                    </h3>
-                                    <ul class="mt-5 space-y-3">
-                                        {col.links.map((link) => (
-                                            <li>
-                                                <a
-                                                    href={link.href}
-                                                    class="text-[14px] text-white/72 transition hover:text-white"
-                                                >
-                                                    {link.label}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))
+            <script is:inline>
+                (function () {
+                    try {
+                        var stored = localStorage.getItem("bolt-landing-theme");
+                        if (stored === "dark") {
+                            var el = document.getElementById("landing-top");
+                            if (el) {
+                                el.classList.remove("landing-light");
+                                el.classList.add("landing-dark");
+                            }
                         }
-                    </div>
-                    <div
-                        class="mt-14 border-t border-white/8 pt-7 font-mono text-[11px] uppercase tracking-[0.16em] text-white/45"
-                    >
-                        © {year} Bolt System · Built in Nashville, TN
-                    </div>
-                </div>
-            </footer>
+                    } catch (_) {}
+                })();
+            </script>
+            <MarketingChromeShell currentPath={currentPath}>
+                <main
+                    class="landing-main marketing-subpage-main relative z-10 pt-7 pb-12 sm:pt-8 sm:pb-12"
+                >
+                    <slot />
+                </main>
+            </MarketingChromeShell>
         </div>
-        <script is:inline>
-            (function () {
-                var root = document.getElementById("landing-top");
-                var toggles = document.querySelectorAll(
-                    "[data-theme-toggle]"
-                );
-                if (!root || !toggles.length) return;
-
-                function syncIcons() {
-                    var dark = root.classList.contains("landing-dark");
-                    toggles.forEach(function (btn) {
-                        var moon = btn.querySelector(
-                            '[data-theme-icon="moon"]'
-                        );
-                        var sun = btn.querySelector(
-                            '[data-theme-icon="sun"]'
-                        );
-                        if (!moon || !sun) return;
-                        if (dark) {
-                            moon.classList.add("hidden");
-                            sun.classList.remove("hidden");
-                            btn.setAttribute(
-                                "aria-label",
-                                "Switch landing page to light mode"
-                            );
-                        } else {
-                            moon.classList.remove("hidden");
-                            sun.classList.add("hidden");
-                            btn.setAttribute(
-                                "aria-label",
-                                "Switch landing page to dark mode"
-                            );
-                        }
-                    });
-                }
-
-                syncIcons();
-                toggles.forEach(function (btn) {
-                    btn.addEventListener("click", function () {
-                        var nextDark =
-                            !root.classList.contains("landing-dark");
-                        root.classList.toggle("landing-dark", nextDark);
-                        root.classList.toggle("landing-light", !nextDark);
-                        try {
-                            localStorage.setItem(
-                                "bolt-landing-theme",
-                                nextDark ? "dark" : "light"
-                            );
-                        } catch (_) {}
-                        syncIcons();
-                    });
-                });
-            })();
-        </script>
     </body>
 </html>

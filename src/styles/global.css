@@ -83,6 +83,80 @@
     --ring: hsl(0 0% 83.1%);
 }
 
+/* Schedule-demo modal form fields — explicit colors so they survive the body
+   teleport regardless of the OS color-scheme, and match the site aesthetic. */
+.schedule-demo-root .demo-field-input {
+    appearance: none;
+    -webkit-appearance: none;
+    color-scheme: light;
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--foreground);
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.5), 0 1px 0 rgb(15 23 42 / 0.02);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.schedule-demo-root .demo-field-input::placeholder {
+    color: var(--muted-foreground);
+    opacity: 0.7;
+}
+
+.schedule-demo-root .demo-field-input:hover {
+    border-color: color-mix(in oklab, var(--foreground) 25%, var(--border));
+}
+
+.schedule-demo-root .demo-field-input:focus,
+.schedule-demo-root .demo-field-input:focus-visible {
+    outline: none;
+    border-color: var(--foreground);
+    box-shadow: 0 0 0 3px rgb(15 23 42 / 0.08);
+}
+
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input {
+    color-scheme: dark;
+    border-color: rgb(255 255 255 / 0.14);
+    background: rgb(255 255 255 / 0.04);
+    color: hsl(0 0% 98%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1px 0 rgb(0 0 0 / 0.4);
+}
+
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input::placeholder {
+    color: rgb(255 255 255 / 0.4);
+    opacity: 1;
+}
+
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input:hover {
+    border-color: rgb(255 255 255 / 0.28);
+}
+
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input:focus,
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input:focus-visible {
+    border-color: rgb(255 255 255 / 0.6);
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 0.1);
+}
+
+.schedule-demo-root .demo-field-input:-webkit-autofill,
+.schedule-demo-root .demo-field-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--foreground);
+    -webkit-box-shadow: 0 0 0 1000px var(--card) inset;
+    caret-color: var(--foreground);
+    transition: background-color 9999s ease-out 0s;
+}
+
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input:-webkit-autofill,
+.schedule-demo-root[data-landing-theme='dark'] .demo-field-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: hsl(0 0% 98%);
+    -webkit-box-shadow: 0 0 0 1000px hsl(0 0% 8%) inset;
+    caret-color: hsl(0 0% 98%);
+}
+
 /* Teleported demo modal on body: inherit light tokens from :root; mirror dark when landing is dark. */
 .schedule-demo-root[data-landing-theme='dark'] {
     --background: hsl(0 0% 3.9%);
@@ -192,6 +266,58 @@ body {
 
 #landing-top.landing-light .marketing-preheader a:hover {
     color: rgb(15 23 42);
+}
+
+/* Sales / Support label chips inside the pre-header */
+.marketing-preheader-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.18rem 0.6rem 0.18rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    background: rgb(255 255 255 / 0.04);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgb(255 255 255 / 0.78);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.marketing-preheader-chip-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.55);
+    box-shadow: 0 0 0 2px rgb(255 255 255 / 0.06);
+}
+
+.marketing-preheader-chip[data-channel="sales"] .marketing-preheader-chip-dot {
+    background: #facc15;
+    box-shadow: 0 0 0 2px rgb(250 204 21 / 0.18);
+}
+
+.marketing-preheader-chip[data-channel="support"] .marketing-preheader-chip-dot {
+    background: #34d399;
+    box-shadow: 0 0 0 2px rgb(52 211 153 / 0.18);
+}
+
+#landing-top.landing-light .marketing-preheader-chip,
+#landing-top.landing-light .landing-preheader .marketing-preheader-chip {
+    border-color: rgb(15 23 42 / 0.14);
+    background: rgb(255 255 255 / 0.55);
+    color: rgb(15 23 42 / 0.78);
+}
+
+#landing-top.landing-light .marketing-preheader-chip[data-channel="sales"] .marketing-preheader-chip-dot {
+    box-shadow: 0 0 0 2px rgb(250 204 21 / 0.28);
+}
+
+#landing-top.landing-light .marketing-preheader-chip[data-channel="support"] .marketing-preheader-chip-dot {
+    box-shadow: 0 0 0 2px rgb(52 211 153 / 0.3);
 }
 
 /* Marketing subpages (pricing, contact): hero inherits page cream — no gradient rectangle */
@@ -575,4 +701,578 @@ body {
     border-color: rgb(0 0 0 / 0.22);
     background: rgb(0 0 0 / 0.06);
     color: rgb(0 0 0);
+}
+
+/* Active state for the centered marketing nav links */
+.marketing-nav-link.is-active {
+    color: rgb(255 255 255 / 0.95);
+}
+#landing-top.landing-light .marketing-nav-link {
+    color: rgb(15 23 42 / 0.62);
+}
+#landing-top.landing-light .marketing-nav-link:hover {
+    color: rgb(15 23 42);
+}
+#landing-top.landing-light .marketing-nav-link.is-active {
+    color: rgb(15 23 42);
+}
+
+/* Mobile drawer panel */
+.marketing-mobile-panel {
+    background: #070808;
+}
+#landing-top.landing-light .marketing-mobile-panel {
+    background: #fffaf0;
+    border-top-color: rgb(15 23 42 / 0.08);
+}
+
+.marketing-mobile-link {
+    color: rgb(255 255 255 / 0.78);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.marketing-mobile-link:hover {
+    background: rgb(255 255 255 / 0.05);
+    color: rgb(255 255 255);
+}
+.marketing-mobile-link.is-active {
+    background: rgb(250 204 21 / 0.12);
+    color: rgb(250 204 21);
+}
+#landing-top.landing-light .marketing-mobile-link {
+    color: rgb(15 23 42 / 0.78);
+}
+#landing-top.landing-light .marketing-mobile-link:hover {
+    background: rgb(15 23 42 / 0.04);
+    color: rgb(15 23 42);
+}
+#landing-top.landing-light .marketing-mobile-link.is-active {
+    background: rgb(180 132 0 / 0.14);
+    color: rgb(146 105 0);
+}
+
+.marketing-mobile-secondary {
+    border-color: rgb(255 255 255 / 0.14);
+    background: transparent;
+    color: rgb(255 255 255 / 0.78);
+}
+.marketing-mobile-secondary:hover {
+    border-color: rgb(255 255 255 / 0.3);
+    color: rgb(255 255 255);
+}
+#landing-top.landing-light .marketing-mobile-secondary {
+    border-color: rgb(15 23 42 / 0.14);
+    background: rgb(15 23 42 / 0.03);
+    color: rgb(15 23 42 / 0.78);
+}
+#landing-top.landing-light .marketing-mobile-secondary:hover {
+    border-color: rgb(15 23 42 / 0.22);
+    color: rgb(15 23 42);
+}
+
+/* -------- Contact page ----------------------------------------------------- */
+
+#landing-top.landing-light .contact-hero {
+    background: transparent;
+}
+
+.contact-channel-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .contact-channel-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.contact-channel-card {
+    background: rgb(7 8 8 / 0.55);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.75rem 1.75rem 1.85rem;
+    position: relative;
+}
+
+/* Sales card: warm Bolt-yellow accent — same language as the comparison + estimator. */
+.contact-channel-card--sales {
+    background:
+        linear-gradient(180deg, rgb(250 204 21 / 0.06), rgb(250 204 21 / 0)) ,
+        rgb(7 8 8 / 0.6);
+    border-color: rgb(250 204 21 / 0.28);
+    box-shadow:
+        0 0 0 1px rgb(250 204 21 / 0.04),
+        0 22px 50px -34px rgb(0 0 0 / 0.6);
+}
+
+.contact-channel-card--sales::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #facc15 25%,
+        #facc15 75%,
+        transparent 100%
+    );
+    border-radius: 1.25rem 1.25rem 0 0;
+    content: '';
+    height: 2px;
+    left: 14%;
+    opacity: 0.55;
+    pointer-events: none;
+    position: absolute;
+    right: 14%;
+    top: -1px;
+}
+
+.contact-channel-card-head {
+    align-items: center;
+    display: flex;
+    gap: 0.85rem;
+}
+
+.contact-channel-icon {
+    align-items: center;
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.75rem;
+    color: rgb(255 255 255 / 0.78);
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 2.4rem;
+    justify-content: center;
+    width: 2.4rem;
+}
+
+.contact-channel-card--sales .contact-channel-icon {
+    background: rgb(250 204 21 / 0.16);
+    border-color: rgb(250 204 21 / 0.3);
+    color: rgb(250 204 21 / 0.95);
+}
+
+.contact-channel-eyebrow {
+    color: rgb(255 255 255 / 0.95);
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.contact-channel-card--sales .contact-channel-eyebrow {
+    color: rgb(250 204 21 / 0.95);
+}
+
+.contact-channel-meta {
+    color: rgb(255 255 255 / 0.55);
+    font-size: 12.5px;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    letter-spacing: 0.02em;
+    margin-top: 0.15rem;
+}
+
+.contact-channel-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.contact-channel-primary {
+    color: rgb(255 255 255);
+    display: inline-block;
+    font-feature-settings: 'tnum';
+    font-size: 1.85rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    transition: color 0.18s ease;
+}
+
+.contact-channel-primary:hover {
+    color: rgb(255 255 255 / 0.85);
+}
+
+.contact-channel-secondary {
+    color: rgb(255 255 255 / 0.72);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgb(255 255 255 / 0.2);
+    text-underline-offset: 0.2em;
+    transition: color 0.18s ease, text-decoration-color 0.18s ease;
+    word-break: break-all;
+}
+
+.contact-channel-secondary:hover {
+    color: rgb(255 255 255);
+    text-decoration-color: rgb(255 255 255 / 0.55);
+}
+
+.contact-channel-response {
+    align-items: baseline;
+    color: rgb(255 255 255 / 0.72);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    gap: 0.55rem 0.6rem;
+    line-height: 1.5;
+}
+
+.contact-channel-response-tag {
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 9999px;
+    color: rgb(255 255 255 / 0.75);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    padding: 0.2rem 0.55rem;
+    text-transform: uppercase;
+}
+
+.contact-channel-card--sales .contact-channel-response-tag {
+    background: rgb(250 204 21 / 0.14);
+    border-color: rgb(250 204 21 / 0.28);
+    color: rgb(250 204 21 / 0.95);
+}
+
+.contact-channel-best-for {
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+    padding-top: 1.25rem;
+}
+
+.contact-channel-card--sales .contact-channel-best-for {
+    border-top-color: rgb(250 204 21 / 0.18);
+}
+
+.contact-channel-best-for-label {
+    color: rgb(255 255 255 / 0.5);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.contact-channel-best-for-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 0.85rem;
+}
+
+.contact-channel-best-for-list li {
+    align-items: flex-start;
+    color: rgb(255 255 255 / 0.78);
+    display: flex;
+    font-size: 13.5px;
+    gap: 0.7rem;
+    line-height: 1.45;
+}
+
+.contact-channel-bullet {
+    background: rgb(255 255 255 / 0.32);
+    border-radius: 9999px;
+    flex-shrink: 0;
+    height: 0.32rem;
+    margin-top: 0.55rem;
+    width: 0.32rem;
+}
+
+.contact-channel-card--sales .contact-channel-bullet {
+    background: rgb(250 204 21 / 0.7);
+}
+
+/* Light mode --------------------------------------------------------------- */
+
+#landing-top.landing-light .contact-channel-card {
+    background: rgb(255 255 255 / 0.6);
+    border-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .contact-channel-card--sales {
+    background:
+        linear-gradient(180deg, #fff8d8, #fffdf2 60%, rgb(255 255 255 / 0.6) 100%);
+    border-color: rgb(180 132 0 / 0.3);
+    box-shadow:
+        0 0 0 1px rgb(180 132 0 / 0.04),
+        0 18px 40px -34px rgb(120 80 0 / 0.4);
+}
+
+#landing-top.landing-light .contact-channel-card--sales::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgb(180 132 0 / 0.7) 25%,
+        rgb(180 132 0 / 0.7) 75%,
+        transparent 100%
+    );
+    opacity: 0.7;
+}
+
+#landing-top.landing-light .contact-channel-icon {
+    background: rgb(15 23 42 / 0.04);
+    border-color: rgb(15 23 42 / 0.1);
+    color: rgb(15 23 42 / 0.7);
+}
+
+#landing-top.landing-light .contact-channel-card--sales .contact-channel-icon {
+    background: rgb(180 132 0 / 0.14);
+    border-color: rgb(180 132 0 / 0.32);
+    color: rgb(146 105 0);
+}
+
+#landing-top.landing-light .contact-channel-eyebrow {
+    color: rgb(15 23 42);
+}
+
+#landing-top.landing-light .contact-channel-card--sales .contact-channel-eyebrow {
+    color: rgb(146 105 0);
+}
+
+#landing-top.landing-light .contact-channel-meta {
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .contact-channel-primary {
+    color: rgb(15 23 42);
+}
+
+#landing-top.landing-light .contact-channel-primary:hover {
+    color: rgb(15 23 42 / 0.78);
+}
+
+#landing-top.landing-light .contact-channel-secondary {
+    color: rgb(51 65 85);
+    text-decoration-color: rgb(15 23 42 / 0.22);
+}
+
+#landing-top.landing-light .contact-channel-secondary:hover {
+    color: rgb(15 23 42);
+    text-decoration-color: rgb(15 23 42 / 0.55);
+}
+
+#landing-top.landing-light .contact-channel-response {
+    color: rgb(51 65 85);
+}
+
+#landing-top.landing-light .contact-channel-response-tag {
+    background: rgb(15 23 42 / 0.04);
+    border-color: rgb(15 23 42 / 0.1);
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .contact-channel-card--sales .contact-channel-response-tag {
+    background: rgb(180 132 0 / 0.14);
+    border-color: rgb(180 132 0 / 0.3);
+    color: rgb(146 105 0);
+}
+
+#landing-top.landing-light .contact-channel-best-for {
+    border-top-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .contact-channel-card--sales .contact-channel-best-for {
+    border-top-color: rgb(180 132 0 / 0.22);
+}
+
+#landing-top.landing-light .contact-channel-best-for-label {
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .contact-channel-best-for-list li {
+    color: rgb(30 41 59);
+}
+
+#landing-top.landing-light .contact-channel-bullet {
+    background: rgb(15 23 42 / 0.4);
+}
+
+#landing-top.landing-light .contact-channel-card--sales .contact-channel-bullet {
+    background: rgb(146 105 0 / 0.85);
+}
+
+/* Office card -------------------------------------------------------------- */
+
+.contact-office-card {
+    background: rgb(7 8 8 / 0.5);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+}
+
+.contact-office-card-head {
+    align-items: center;
+    display: flex;
+    gap: 0.85rem;
+}
+
+.contact-office-icon {
+    align-items: center;
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.75rem;
+    color: rgb(255 255 255 / 0.78);
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 2.4rem;
+    justify-content: center;
+    width: 2.4rem;
+}
+
+.contact-office-eyebrow {
+    color: rgb(255 255 255 / 0.5);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.contact-office-name {
+    color: rgb(255 255 255);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 0.2rem;
+}
+
+.contact-office-grid {
+    display: grid;
+    gap: 1rem 1.5rem;
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .contact-office-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.contact-office-grid > div {
+    border-top: 1px solid rgb(255 255 255 / 0.06);
+    padding-top: 0.85rem;
+}
+
+.contact-office-grid dt {
+    color: rgb(255 255 255 / 0.5);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.contact-office-grid dd {
+    color: rgb(255 255 255 / 0.82);
+    font-size: 13.5px;
+    line-height: 1.45;
+    margin-top: 0.35rem;
+}
+
+.contact-office-link {
+    color: rgb(255 255 255 / 0.85);
+    text-decoration: underline;
+    text-decoration-color: rgb(255 255 255 / 0.25);
+    text-underline-offset: 0.2em;
+    transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.contact-office-link:hover {
+    color: rgb(255 255 255);
+    text-decoration-color: rgb(255 255 255 / 0.55);
+}
+
+#landing-top.landing-light .contact-office-card {
+    background: rgb(255 255 255 / 0.55);
+    border-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .contact-office-icon {
+    background: rgb(15 23 42 / 0.04);
+    border-color: rgb(15 23 42 / 0.1);
+    color: rgb(15 23 42 / 0.7);
+}
+
+#landing-top.landing-light .contact-office-eyebrow {
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .contact-office-name {
+    color: rgb(15 23 42);
+}
+
+#landing-top.landing-light .contact-office-grid > div {
+    border-top-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .contact-office-grid dt {
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .contact-office-grid dd {
+    color: rgb(15 23 42 / 0.85);
+}
+
+#landing-top.landing-light .contact-office-link {
+    color: rgb(15 23 42 / 0.85);
+    text-decoration-color: rgb(15 23 42 / 0.28);
+}
+
+#landing-top.landing-light .contact-office-link:hover {
+    color: rgb(15 23 42);
+    text-decoration-color: rgb(15 23 42 / 0.55);
+}
+
+/* "Before you call" FAQ list ---------------------------------------------- */
+
+.contact-faq-list {
+    background: rgb(7 8 8 / 0.5);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.contact-faq-row {
+    border-top: 1px solid rgb(255 255 255 / 0.07);
+    padding: 1.25rem 1.5rem;
+}
+
+.contact-faq-row:first-child {
+    border-top: 0;
+}
+
+.contact-faq-q {
+    color: rgb(255 255 255 / 0.95);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+}
+
+.contact-faq-a {
+    color: rgb(255 255 255 / 0.66);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: 0.4rem;
+}
+
+#landing-top.landing-light .contact-faq-list {
+    background: rgb(255 255 255 / 0.55);
+    border-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .contact-faq-row {
+    border-top-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .contact-faq-q {
+    color: rgb(15 23 42);
+}
+
+#landing-top.landing-light .contact-faq-a {
+    color: rgb(51 65 85);
 }

@@ -1,143 +1,8 @@
 <template>
-    <div
-        id="landing-top"
-        :class="[
-            'landing-page min-h-screen overflow-x-hidden bg-[#050606] text-white',
-            isLightMode ? 'landing-light' : 'landing-dark',
-        ]"
-    >
-        <div class="landing-preheader">
-            <div
-                class="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 py-2 text-[11px] leading-snug sm:justify-between sm:px-8 sm:text-[12px] lg:px-12 xl:px-16"
-            >
-                <div
-                    class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-start"
-                >
-                    <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] opacity-65">
-                        {{ siteContact.sales.label }}
-                    </span>
-                    <a
-                        :href="siteContact.sales.phoneHref"
-                        class="tabular-nums transition hover:underline"
-                    >
-                        {{ siteContact.sales.phoneDisplay }}
-                    </a>
-                    <span class="opacity-40" aria-hidden="true">·</span>
-                    <a
-                        :href="siteContact.sales.emailHref"
-                        class="break-all transition hover:underline"
-                    >
-                        {{ siteContact.sales.emailDisplay }}
-                    </a>
-                </div>
-                <div
-                    class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-end"
-                >
-                    <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] opacity-65">
-                        {{ siteContact.support.label }}
-                    </span>
-                    <a
-                        :href="siteContact.support.phoneHref"
-                        class="tabular-nums transition hover:underline"
-                    >
-                        {{ siteContact.support.phoneDisplay }}
-                    </a>
-                    <span class="opacity-40" aria-hidden="true">·</span>
-                    <a
-                        :href="siteContact.support.emailHref"
-                        class="break-all transition hover:underline"
-                    >
-                        {{ siteContact.support.emailDisplay }}
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <header
-            class="landing-site-header supports-[backdrop-filter]:bg-[#070808]/80 sticky top-0 z-30 border-b border-white/10 bg-[#070808]/90 backdrop-blur-xl backdrop-saturate-150"
-        >
-            <nav
-                class="relative mx-auto flex h-[72px] w-full max-w-[1240px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16"
-                aria-label="Public navigation"
-            >
-                <a
-                    href="#landing-top"
-                    class="flex items-center gap-2"
-                    aria-label="Bolt TMS landing page"
-                >
-                    <img
-                        :src="landingLogo"
-                        alt="Bolt TMS"
-                        class="h-7 w-auto"
-                    />
-                </a>
-
-                <div
-                    class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-[12px] font-medium text-white/55 lg:flex xl:gap-8"
-                >
-                    <a href="#landing-top" class="transition hover:text-white">
-                        Home
-                    </a>
-                    <a href="#features" class="transition hover:text-white">
-                        What we built
-                    </a>
-                    <a href="#integrations" class="transition hover:text-white">
-                        Integrations
-                    </a>
-                    <a :href="withBase('/pricing')" class="transition hover:text-white">
-                        Pricing
-                    </a>
-                    <a :href="withBase('/contact')" class="transition hover:text-white">
-                        Contact
-                    </a>
-                </div>
-
-                <div class="flex items-center gap-1.5 sm:gap-2">
-                    <button
-                        type="button"
-                        class="landing-theme-toggle inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:text-white"
-                        :aria-label="
-                            isLightMode
-                                ? 'Switch landing page to dark mode'
-                                : 'Switch landing page to light mode'
-                        "
-                        @click="toggleLandingTheme"
-                    >
-                        <Moon v-if="isLightMode" class="size-4" />
-                        <Sun v-else class="size-4" />
-                    </button>
-                    <a
-                        href="https://app.bolttms.com/"
-                        class="hidden rounded-md px-2.5 py-2 text-[12px] font-medium text-white/55 hover:text-white xl:inline-flex"
-                    >
-                        Sign in
-                    </a>
-                    <button
-                        type="button"
-                        class="hidden h-9 shrink-0 items-center rounded-full border px-3.5 text-[12px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] sm:inline-flex md:px-4"
-                        :class="
-                            isLightMode
-                                ? 'border-black/14 bg-black/[0.03] text-black/78 hover:border-black/22 hover:bg-black/[0.06]'
-                                : 'border-white/14 bg-white/[0.05] text-white/82 hover:border-white/26 hover:bg-white/[0.09]'
-                        "
-                        @click="openScheduleDemo"
-                    >
-                        <span class="hidden lg:inline">Schedule demo</span>
-                        <span class="lg:hidden">Demo</span>
-                    </button>
-                    <a
-                        href="https://app.bolttms.com/register?step=registration"
-                        class="landing-cta inline-flex h-9 shrink-0 items-center rounded-full bg-white px-4 text-[12px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] active:translate-y-px sm:h-10 sm:px-5"
-                    >
-                        <span class="hidden sm:inline">Start field test</span><span class="sm:hidden">Field test</span>
-                    </a>
-                </div>
-            </nav>
-        </header>
-
+    <div class="landing-experience">
         <main class="landing-main">
             <section
-                class="landing-section landing-section-hero relative z-10 isolate overflow-hidden px-4 py-10 sm:px-6 sm:py-12"
+                class="landing-section landing-section-hero relative z-10 isolate overflow-hidden py-10 sm:py-12"
             >
                 <div
                     class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.14),rgba(255,255,255,0.045)_32%,rgba(5,6,6,0)_68%)]"
@@ -148,7 +13,7 @@
                     aria-hidden="true"
                 />
                 <div
-                    class="mx-auto grid max-w-[1240px] grid-cols-1 items-end gap-12 lg:grid-cols-12 lg:gap-x-10"
+                    class="marketing-shell grid grid-cols-1 items-end gap-12 lg:grid-cols-12 lg:gap-x-10"
                 >
                     <div class="lg:col-span-7 xl:col-span-7">
                         <span
@@ -169,7 +34,7 @@
                         <p
                             class="mt-6 max-w-xl text-pretty text-[16px] leading-relaxed text-white/55 sm:text-[18px]"
                         >
-                            If your TMS quote is higher than your truck payment, you’re paying for sales calls. Bolt is self-serve and live in an hour—start with a 90-day field test, then stay month-to-month.
+                            If your TMS quote is higher than your truck payment, you’re paying for sales calls. Bolt is self-serve and live in an hour—start with a 30-day field test, then stay month-to-month.
                         </p>
                         <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:gap-4">
                             <a
@@ -186,7 +51,7 @@
                             </a>
                         </div>
                         <p class="mt-4 max-w-lg text-[13px] leading-relaxed text-white/45">
-                            90-day field test on your freight. Month-to-month after—no long-term contract.
+                            30-day field test on your freight. Month-to-month after—no long-term contract.
                         </p>
                         <dl
                             class="mt-12 grid w-full max-w-xl grid-cols-3 grid-rows-[auto_auto] gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left backdrop-blur"
@@ -3248,9 +3113,9 @@
 
             <section
                 id="features"
-                class="landing-section landing-section-features scroll-mt-20 border-t border-white/10 bg-[#080a0b] px-4 py-10 sm:px-6 sm:py-12"
+                class="landing-section landing-section-features scroll-mt-20 border-t border-white/10 bg-[#080a0b] py-10 sm:py-12"
             >
-                <div class="mx-auto max-w-[1240px]">
+                <div class="marketing-shell">
                     <div class="max-w-[980px]">
                         <p
                             class="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/40"
@@ -3440,10 +3305,11 @@
 
             <section
                 id="integrations"
-                class="landing-section landing-integrations-section scroll-mt-20 border-y px-4 py-10 sm:px-6 sm:py-12"
+                class="landing-section landing-integrations-section scroll-mt-20 border-y py-10 sm:py-12"
             >
-                <div class="mx-auto max-w-[920px]">
-                    <div class="max-w-[920px]">
+                <div class="marketing-shell">
+                    <div class="mx-auto max-w-[920px]">
+                        <div class="max-w-[920px]">
                         <p class="integration-kicker">
                             Keep what works
                         </p>
@@ -3666,6 +3532,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </section>
 
             <TmsComparisonSection :content="comparisonContent">
@@ -3674,7 +3541,7 @@
                         <div class="landing-section-cta-text">
                             <p class="landing-section-cta-eyebrow">Why pay for sales calls?</p>
                             <p class="landing-section-cta-headline">
-                                Skip the steak dinner. Run Bolt on your lanes for 90 days.
+                                Run Bolt on your fleet for 30 days.
                             </p>
                         </div>
                         <div class="landing-section-cta-actions">
@@ -3700,9 +3567,9 @@
             <section
                 v-if="false"
                 id="testimonials"
-                class="landing-section landing-section-testimonials scroll-mt-20 border-b border-white/10 bg-[#080a0b] px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-20"
+                class="landing-section landing-section-testimonials scroll-mt-20 border-b border-white/10 bg-[#080a0b] pb-16 pt-16 sm:pb-20 sm:pt-20"
             >
-                <div class="mx-auto max-w-[1240px]">
+                <div class="marketing-shell">
                     <div
                         class="grid gap-8 lg:gap-10 xl:grid-cols-12 xl:items-start xl:gap-x-12"
                     >
@@ -3775,7 +3642,7 @@
 
             <section
                 id="get-started"
-                class="landing-section landing-section-get-started scroll-mt-20 border-t border-white/[0.07] bg-[#050606] px-4 py-10 sm:px-6 sm:py-12"
+                class="landing-section landing-section-get-started scroll-mt-20 border-t border-white/[0.07] bg-[#050606] py-10 sm:py-12"
             >
                 <div class="mx-auto max-w-[820px] text-center">
                     <p
@@ -3797,7 +3664,7 @@
                     <ul class="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3">
                         <li
                             v-for="point in [
-                                '90-day field test. Month-to-month after—no long-term contract.',
+                                '30-day field test. Month-to-month after—no long-term contract.',
                                 'Connect accounting, invoicing, and telematics in minutes — e.g. QuickBooks Online and Samsara when you use them.',
                                 'Invite your dispatch team once the field test proves it.',
                             ]"
@@ -3825,88 +3692,6 @@
                 </div>
             </section>
         </main>
-
-        <footer class="landing-footer border-t border-white/10 bg-[#050606] px-4 py-10 sm:px-6 sm:py-12">
-            <div class="mx-auto max-w-[1240px]">
-                <div class="grid gap-12 lg:grid-cols-12 lg:gap-x-10">
-                    <div class="lg:col-span-4">
-                        <a href="#landing-top" class="inline-flex items-center" aria-label="Bolt TMS">
-                            <img :src="landingLogo" alt="Bolt TMS" class="h-7 w-auto" />
-                        </a>
-                        <p class="mt-5 max-w-sm text-[14px] leading-7 text-white/55">
-                            Built to replace what you’ve got — not duct-tape it.
-                        </p>
-                        <div class="mt-6 flex items-center gap-2">
-                            <span class="landing-footer-status size-2 rounded-full bg-emerald-400" aria-hidden="true" />
-                            <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55">
-                                All systems operational
-                            </span>
-                        </div>
-                        <ul class="mt-8 space-y-2 border-t border-white/8 pt-6 text-[13px] leading-relaxed text-white/72">
-                            <li>
-                                <a
-                                    :href="siteContact.sales.phoneHref"
-                                    class="transition hover:text-white"
-                                >
-                                    Sales
-                                    {{ siteContact.sales.phoneDisplay }}
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    :href="siteContact.support.phoneHref"
-                                    class="transition hover:text-white"
-                                >
-                                    Support
-                                    {{ siteContact.support.phoneDisplay }}
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    :href="siteContact.sales.emailHref"
-                                    class="break-all transition hover:text-white"
-                                >
-                                    {{ siteContact.sales.emailDisplay }}
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    :href="siteContact.support.emailHref"
-                                    class="break-all transition hover:text-white"
-                                >
-                                    {{ siteContact.support.emailDisplay }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <nav
-                        class="grid gap-10 sm:grid-cols-4 lg:col-span-8"
-                        aria-label="Footer navigation"
-                    >
-                        <div v-for="column in footerColumns" :key="column.heading">
-                            <h3 class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">
-                                {{ column.heading }}
-                            </h3>
-                            <ul class="mt-5 space-y-3">
-                                <li v-for="link in column.links" :key="link.label">
-                                    <a
-                                        :href="link.href"
-                                        class="text-[14px] text-white/72 transition hover:text-white"
-                                    >
-                                        {{ link.label }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <div class="mt-14 flex flex-col items-start justify-between gap-3 border-t border-white/8 pt-7 sm:flex-row sm:items-center">
-                    <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/45">
-                        © {{ currentYear }} Bolt System · Built in Nashville, TN
-                    </p>
-                </div>
-            </div>
-        </footer>
 
         <ScheduleDemoModal
             v-model="scheduleDemoOpen"
@@ -3936,7 +3721,6 @@ import {
     Lock,
     Megaphone,
     Menu,
-    Moon,
     MapPin,
     Navigation,
     Package,
@@ -3947,7 +3731,6 @@ import {
     Scale,
     Search,
     Settings,
-    Sun,
     Truck,
     Users,
     Wallet,
@@ -3959,11 +3742,9 @@ import {
     capabilities,
     comparisonContent,
     featuredIntegrations,
-    footerColumns,
     heroStats,
     integrationHandoffs,
     partnerRoadmap,
-    siteContact,
     testimonials,
 } from '../../content'
 
@@ -4010,26 +3791,27 @@ const landingLogo = computed(() =>
     isLightMode.value ? logoFull : logoFullYellowWhite
 )
 
-function toggleLandingTheme() {
-    isLightMode.value = !isLightMode.value
-    if (typeof window !== 'undefined') {
-        try {
-            window.localStorage.setItem(
-                'bolt-landing-theme',
-                isLightMode.value ? 'light' : 'dark'
-            )
-        } catch (_) {
-            /* ignore storage failures */
-        }
+// The Astro chrome (MarketingChromeShell.astro) owns the theme toggle and
+// dispatches `bolt-landing-theme-change` whenever it flips. Keep the Vue
+// `isLightMode` in sync so any in-page islands (capability cards, schedule
+// demo button styling, modal theme prop, etc.) re-render with the right tone.
+function syncThemeFromDom() {
+    if (typeof document === 'undefined') return
+    const root = document.getElementById('landing-top')
+    if (!root) return
+    isLightMode.value = !root.classList.contains('landing-dark')
+}
+function handleThemeChange(event) {
+    if (event && event.detail && event.detail.theme) {
+        isLightMode.value = event.detail.theme === 'light'
+    } else {
+        syncThemeFromDom()
     }
 }
 
 function openScheduleDemo() {
     scheduleDemoOpen.value = true
 }
-
-const currentYear = new Date().getFullYear()
-const buildSignature = 'live workspace'
 
 let revealObserver = null
 
@@ -4039,6 +3821,10 @@ onMounted(() => {
     if (typeof window === 'undefined') {
         return
     }
+
+    syncThemeFromDom()
+    window.addEventListener('bolt-landing-theme-change', handleThemeChange)
+    window.addEventListener('storage', handleThemeChange)
 
     const landingPage = document.getElementById('landing-top')
     const prefersReducedMotion =
@@ -4083,6 +3869,10 @@ onUnmounted(() => {
     revealObserver?.disconnect()
     revealObserver = null
     document.getElementById('landing-top')?.classList.remove('is-reveal-ready')
+    if (typeof window !== 'undefined') {
+        window.removeEventListener('bolt-landing-theme-change', handleThemeChange)
+        window.removeEventListener('storage', handleThemeChange)
+    }
 })
 
 const shipments = [

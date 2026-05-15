@@ -1,12 +1,12 @@
 {
   "meta": {
     "title": "Pricing · Bolt TMS",
-    "description": "Straightforward TMS pricing: 90-day field test, then month-to-month. Self-serve signup—no enterprise sales tax."
+    "description": "Straightforward TMS pricing: 30-day field test, then month-to-month. Self-serve signup—no enterprise sales tax."
   },
   "hero": {
     "headline": "Better than the other guys. Less expensive, too.",
-    "subhead": "Fully functional TMS for small, mid-sized, and large carriers—the same product whether you run 5 trucks or 500. Start with a 90-day field test on your operation; after that it’s month-to-month with no long-term contract.",
-    "contrastLine": "Enterprise TMS quotes often bake in months of demos and steak dinners. We’d rather ship software you can afford."
+    "subhead": "Fully functional TMS for small, mid-sized, and large carriers—the same product whether you run 5 trucks or 500. Start with a 30-day field test on your operation; after that it’s month-to-month with no long-term contract.",
+    "contrastLine": "Enterprise TMS quotes often bake in months of demos and sales cycles. We’d rather ship software you can afford."
   },
   "rates": {
     "perUnitLabel": "Per active truck or driver / month",
@@ -24,11 +24,11 @@
     "driversLabel": "Active drivers (typical)",
     "brokerageToggle": "Include brokerage add-on (+$200/mo)"
   },
-  "trialNote": "90-day field test · Month-to-month after · No long-term contract",
+  "trialNote": "30-day field test · Month-to-month after · No long-term contract",
   "faq": [
     {
-      "q": "What is the 90-day field test?",
-      "a": "You run Bolt on your real freight and workflows for 90 days—enough time to know if it fits. After that, every plan is month-to-month unless you agree otherwise in writing. No multi-year lock-in by default."
+      "q": "What is the 30-day field test?",
+      "a": "You run Bolt on your real freight and workflows for 30 days—enough time to know if it fits. After that, every plan is month-to-month unless you agree otherwise in writing. No multi-year lock-in by default."
     },
     {
       "q": "What counts as “active”?",

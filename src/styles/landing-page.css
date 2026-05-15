@@ -4,6 +4,23 @@
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Single source of truth for the horizontal container on every marketing
+ * surface (pre-header, header, mobile drawer, page sections, footer).
+ * Anything inside the chrome should sit inside `.marketing-shell` so the
+ * left/right edges line up across the entire site. */
+.marketing-shell {
+    margin-inline: auto;
+    max-width: 1240px;
+    padding-inline: 1rem;        /* base / mobile */
+    width: 100%;
+}
+@media (min-width: 640px) {
+    .marketing-shell { padding-inline: 1.5rem; }
+}
+@media (min-width: 1024px) {
+    .marketing-shell { padding-inline: 2rem; }
+}
+
 #landing-top.landing-dark {
     --landing-accent: #facc15;
     --landing-accent-soft: rgb(250 204 21 / 0.14);

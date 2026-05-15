@@ -93,7 +93,7 @@ const features = [
                     Schedule a demo
                 </button>
                 <span class="alt-hero-cta-fineprint text-[12px] leading-snug text-white/50">
-                    90-day field test · Month-to-month after · No long-term contract
+                    30-day field test · Month-to-month after · No long-term contract
                 </span>
             </div>
         </div>

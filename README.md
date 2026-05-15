@@ -36,7 +36,9 @@ The **Schedule a demo** modal (`ScheduleDemoModal.vue`) POSTs JSON when the user
 1. **Formspree (or similar)** — Set **`PUBLIC_DEMO_FORM_ENDPOINT`** to your form URL (for example `https://formspree.io/f/your-id`). The payload includes `_replyto`, `_subject`, `preferredDate`, `preferredTime`, `fullName`, `email`, `company`, and `fleetSize`.
 2. **Web3Forms** — Set **`PUBLIC_DEMO_FORM_ENDPOINT`** to `https://api.web3forms.com/submit` and set **`PUBLIC_DEMO_FORM_ACCESS_KEY`** to your access key; it is merged into the JSON body as `access_key`.
 
-For local development, add the same variables to a root `.env` (gitignored). Until `PUBLIC_DEMO_FORM_ENDPOINT` is set, confirm shows an inline message pointing at the README.
+For local development, add the same variables to a root `.env` (gitignored).
+
+If `PUBLIC_DEMO_FORM_ENDPOINT` is unset (or the POST fails), the modal falls back to opening the user's email client with a prefilled `mailto:sales@boltsystem.com` containing all booking details — so a lead is never silently dropped, even before the endpoint is wired up.
 
 ## Stack
 

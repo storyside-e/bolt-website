@@ -387,16 +387,30 @@ function pickCalendarDay(cell) {
     selectedDateKey.value = cell.key
 }
 
-async function confirmBooking() {
-    const endpoint = import.meta.env.PUBLIC_DEMO_FORM_ENDPOINT
-    if (!endpoint) {
-        submitError.value =
-            'Scheduling is not configured yet (set PUBLIC_DEMO_FORM_ENDPOINT). See README.'
-        return
-    }
+const SALES_INBOX = 'sales@boltsystem.com'
 
-    submitting.value = true
+function buildMailtoFallback() {
+    const subject = `Bolt demo request — ${fullName.value.trim() || 'New lead'} (${company.value.trim() || 'Company'})`
+    const lines = [
+        'New Bolt demo request',
+        '',
+        `Name:        ${fullName.value.trim()}`,
+        `Email:       ${workEmail.value.trim()}`,
+        `Company:     ${company.value.trim()}`,
+        `Fleet size:  ${fleetSize.value ?? ''}`,
+        '',
+        `Preferred date: ${selectedDateLabel.value}`,
+        `Preferred time: ${timeSummary.value}`,
+        '',
+        '— Sent from bolttms.com schedule-a-demo form',
+    ]
+    const body = lines.join('\n')
+    return `mailto:${SALES_INBOX}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+
+async function confirmBooking() {
     submitError.value = ''
+    submitting.value = true
 
     const payload = {
         form: 'bolt-demo-schedule',
@@ -410,42 +424,58 @@ async function confirmBooking() {
         _replyto: workEmail.value.trim(),
     }
 
+    const endpoint = import.meta.env.PUBLIC_DEMO_FORM_ENDPOINT
     const web3Key = import.meta.env.PUBLIC_DEMO_FORM_ACCESS_KEY
     if (web3Key) {
         payload.access_key = web3Key
     }
 
-    try {
-        const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-            },
-            body: JSON.stringify(payload),
-        })
+    if (endpoint) {
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(payload),
+            })
 
-        const text = await res.text()
-        let ok = res.ok
-        if (!ok && text) {
-            try {
-                const j = JSON.parse(text)
-                if (j.success === true) {
-                    ok = true
+            const text = await res.text()
+            let ok = res.ok
+            if (!ok && text) {
+                try {
+                    const j = JSON.parse(text)
+                    if (j.success === true) {
+                        ok = true
+                    }
+                } catch {
+                    /* ignore */
                 }
-            } catch {
-                /* ignore */
             }
-        }
 
-        if (!ok) {
-            throw new Error(text || res.statusText)
-        }
+            if (!ok) {
+                throw new Error(text || res.statusText)
+            }
 
+            submitSuccess.value = true
+            return
+        } catch {
+            /* fall through to mailto fallback */
+        } finally {
+            submitting.value = false
+        }
+    }
+
+    /* No endpoint configured (or POST failed): hand the request off via the
+       user's email client so the lead is never lost. */
+    try {
+        if (typeof window !== 'undefined') {
+            window.location.href = buildMailtoFallback()
+        }
         submitSuccess.value = true
     } catch {
-        submitError.value =
-            'We could not send your request. Please try again or email us directly.'
+        submitError.value = `We could not open your email app. Please email ${SALES_INBOX} directly.`
     } finally {
         submitting.value = false
     }
@@ -480,7 +510,7 @@ function onDialogKeydown(e) {
     <Teleport v-if="teleportReady" to="body">
         <div
             v-if="modelValue"
-            class="schedule-demo-root fixed inset-0 z-[9999] flex justify-end p-0"
+            class="schedule-demo-root fixed inset-0 z-[9999] flex justify-end p-3 sm:p-5 lg:p-6"
             aria-hidden="false"
             :data-landing-theme="theme"
         >
@@ -497,7 +527,7 @@ function onDialogKeydown(e) {
                 aria-modal="true"
                 aria-labelledby="schedule-demo-title"
                 tabindex="-1"
-                class="schedule-demo-dialog schedule-demo-dialog-animate relative z-10 flex max-h-[100dvh] w-full max-w-[min(920px,100vw)] flex-col overflow-hidden border border-border border-r-0 bg-popover text-popover-foreground shadow-[0_24px_80px_-20px_rgba(0,0,0,0.35)] sm:max-h-[100dvh] sm:rounded-none sm:rounded-l-xl"
+                class="schedule-demo-dialog schedule-demo-dialog-animate relative z-10 flex h-full max-h-full w-full max-w-[min(900px,100%)] flex-col overflow-hidden rounded-2xl border border-border bg-popover text-popover-foreground shadow-[0_30px_90px_-24px_rgba(0,0,0,0.55)]"
                 @keydown="onDialogKeydown"
             >
                 <header class="flex shrink-0 items-center justify-between gap-4 border-b border-border px-5 py-4 sm:px-6">
@@ -697,39 +727,39 @@ function onDialogKeydown(e) {
                                         So we can tailor the demo to your operation.
                                     </p>
 
-                                    <div class="relative z-0 mt-6 flex flex-col gap-4">
+                                    <div class="mt-6 flex flex-col gap-4">
                                         <label class="block">
-                                            <span class="mb-1.5 block text-[12px] font-medium text-muted-foreground">Full name</span>
+                                            <span class="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Full name</span>
                                             <input
                                                 v-model="fullName"
                                                 type="text"
                                                 autocomplete="name"
                                                 placeholder="Jane Smith"
-                                                class="demo-field-input relative z-10 min-h-[44px] w-full rounded-[var(--radius)] border-2 border-border bg-card px-3 py-2.5 text-[14px] text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground/70 focus-visible:border-foreground focus-visible:ring-2 focus-visible:ring-ring/35"
+                                                class="demo-field-input"
                                             />
                                         </label>
                                         <label class="block">
-                                            <span class="mb-1.5 block text-[12px] font-medium text-muted-foreground">Work email</span>
+                                            <span class="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Work email</span>
                                             <input
                                                 v-model="workEmail"
                                                 type="email"
                                                 autocomplete="email"
                                                 placeholder="jane@company.com"
-                                                class="demo-field-input relative z-10 min-h-[44px] w-full rounded-[var(--radius)] border-2 border-border bg-card px-3 py-2.5 text-[14px] text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground/70 focus-visible:border-foreground focus-visible:ring-2 focus-visible:ring-ring/35"
+                                                class="demo-field-input"
                                             />
                                         </label>
                                         <label class="block">
-                                            <span class="mb-1.5 block text-[12px] font-medium text-muted-foreground">Company</span>
+                                            <span class="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Company</span>
                                             <input
                                                 v-model="company"
                                                 type="text"
                                                 autocomplete="organization"
                                                 placeholder="Smith Freight LLC"
-                                                class="demo-field-input relative z-10 min-h-[44px] w-full rounded-[var(--radius)] border-2 border-border bg-card px-3 py-2.5 text-[14px] text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground/70 focus-visible:border-foreground focus-visible:ring-2 focus-visible:ring-ring/35"
+                                                class="demo-field-input"
                                             />
                                         </label>
                                         <div>
-                                            <span class="mb-2 block text-[12px] font-medium text-muted-foreground">Fleet size</span>
+                                            <span class="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Fleet size</span>
                                             <div class="grid grid-cols-2 gap-2">
                                                 <button
                                                     v-for="fs in FLEET_SIZES"

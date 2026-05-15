@@ -4,14 +4,14 @@
   "columns": [
     {
       "variant": "bolt",
-      "badge": "90-day field test · Month-to-month after · No long-term contract",
+      "badge": "30-day field test · Month-to-month after · No long-term contract",
       "eyebrow": "Bolt",
       "descriptor": "Cloud-native · self-serve first",
       "name": "Run it like software, not a project",
       "bullets": [
         {
           "type": "pro",
-          "text": "90-day field test on your lanes—prove it with real dispatch, safety, and billing."
+          "text": "30-day field test on your fleet—prove it with real dispatch, safety, and billing."
         },
         {
           "type": "pro",

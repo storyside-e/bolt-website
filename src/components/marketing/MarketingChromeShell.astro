@@ -1,0 +1,405 @@
+---
+import contact from "../../content/home/contact.json";
+import footerData from "../../content/home/footer.json";
+import logoUrl from "../../assets/img/logo-full.png?url";
+import logoDarkUrl from "../../assets/img/logo-full-yellow-white.png?url";
+import ScheduleDemoIsland from "./ScheduleDemoIsland.vue";
+
+type Props = {
+    /** Used to highlight the active link in the nav. */
+    currentPath?: string;
+};
+
+const { currentPath = "/" } = Astro.props;
+
+const withBase = (path: string) => {
+    const base = import.meta.env.BASE_URL || "/";
+    const root = base.replace(/\/$/, "");
+    const p = path.startsWith("/") ? path : `/${path}`;
+    return root ? `${root}${p}` : p;
+};
+
+const c = contact;
+const year = new Date().getFullYear();
+
+// Theme-aware via .marketing-nav-schedule rule in global.css.
+const scheduleDemoNavButtonClass =
+    "marketing-nav-schedule hidden h-9 shrink-0 items-center rounded-full border px-3.5 text-[12px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] lg:inline-flex";
+
+const scheduleDemoMobileButtonClass =
+    "marketing-nav-schedule inline-flex h-11 w-full items-center justify-center rounded-full border px-5 text-[14px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]";
+
+// `currentPath` may include a trailing slash or the BASE_URL prefix; normalize.
+const stripBase = (path: string) => {
+    const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+    return base && path.startsWith(base) ? path.slice(base.length) || "/" : path;
+};
+const normalize = (p: string) => {
+    const stripped = stripBase(p);
+    if (stripped === "" || stripped === "/") return "/";
+    return stripped.replace(/\/$/, "");
+};
+const here = normalize(currentPath);
+
+type NavLink = { href: string; label: string; match: string | RegExp };
+const navLinks: NavLink[] = [
+    { href: withBase("/"), label: "Home", match: "/" },
+    { href: withBase("/#features"), label: "What we built", match: /^\/#features$/ },
+    { href: withBase("/#integrations"), label: "Integrations", match: /^\/#integrations$/ },
+    { href: withBase("/pricing"), label: "Pricing", match: "/pricing" },
+    { href: withBase("/contact"), label: "Contact", match: "/contact" },
+];
+
+const isActive = (link: NavLink) => {
+    if (typeof link.match === "string") return here === link.match;
+    return link.match.test(here);
+};
+---
+
+<div class="landing-preheader marketing-preheader">
+    <div
+        class="marketing-shell flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-2 text-[11px] leading-snug sm:justify-between sm:text-[12px]"
+    >
+        <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-start">
+            <span class="marketing-preheader-chip" data-channel="sales">
+                <span class="marketing-preheader-chip-dot" aria-hidden="true"></span>
+                {c.sales.label}
+            </span>
+            <a href={c.sales.phoneHref} class="tabular-nums hover:underline"
+                >{c.sales.phoneDisplay}</a
+            >
+            <span class="opacity-40" aria-hidden="true">·</span>
+            <a href={c.sales.emailHref} class="break-all hover:underline"
+                >{c.sales.emailDisplay}</a
+            >
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-end">
+            <span class="marketing-preheader-chip" data-channel="support">
+                <span class="marketing-preheader-chip-dot" aria-hidden="true"></span>
+                {c.support.label}
+            </span>
+            <a href={c.support.phoneHref} class="tabular-nums hover:underline"
+                >{c.support.phoneDisplay}</a
+            >
+            <span class="opacity-40" aria-hidden="true">·</span>
+            <a href={c.support.emailHref} class="break-all hover:underline"
+                >{c.support.emailDisplay}</a
+            >
+        </div>
+    </div>
+</div>
+
+<header
+    class="landing-site-header supports-[backdrop-filter]:bg-[#070808]/80 sticky top-0 z-40 border-b border-white/10 bg-[#070808]/90 backdrop-blur-xl backdrop-saturate-150"
+>
+    <nav
+        class="marketing-shell flex h-[72px] items-center justify-between gap-4"
+        aria-label="Public navigation"
+    >
+        <div class="flex items-center gap-7 xl:gap-10">
+            <a
+                href={withBase("/")}
+                class="flex shrink-0 items-center gap-2"
+                aria-label="Bolt TMS home"
+            >
+                <img
+                    src={logoUrl}
+                    alt="Bolt TMS"
+                    class="marketing-chrome-logo--light h-7 w-auto"
+                    width="120"
+                    height="28"
+                />
+                <img
+                    src={logoDarkUrl}
+                    alt="Bolt TMS"
+                    class="marketing-chrome-logo--dark h-7 w-auto"
+                    width="120"
+                    height="28"
+                    aria-hidden="true"
+                />
+            </a>
+
+            <div
+                class="marketing-nav-center hidden items-center gap-5 text-[12px] font-medium text-white/55 lg:flex xl:gap-7"
+            >
+                {
+                    navLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class:list={[
+                                "marketing-nav-link transition hover:text-white",
+                                isActive(link) && "is-active",
+                            ]}
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 sm:gap-2">
+            <button
+                type="button"
+                class="landing-theme-toggle inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:text-white"
+                aria-label="Toggle landing page theme"
+                data-theme-toggle
+            >
+                <svg
+                    data-theme-icon="moon"
+                    class="size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg
+                >
+                <svg
+                    data-theme-icon="sun"
+                    class="size-4 hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg
+                >
+            </button>
+            <a
+                href="https://app.bolttms.com/"
+                class="hidden rounded-md px-2.5 py-2 text-[12px] font-medium text-white/55 hover:text-white xl:inline-flex"
+                >Sign in</a
+            >
+            <ScheduleDemoIsland
+                client:load
+                theme="light"
+                buttonClass={scheduleDemoNavButtonClass}
+            />
+            <a
+                href="https://app.bolttms.com/register?step=registration"
+                class="landing-cta inline-flex h-9 shrink-0 items-center rounded-full bg-white px-4 text-[12px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] active:translate-y-px sm:h-10 sm:px-5"
+                ><span class="hidden sm:inline">Start field test</span><span class="sm:hidden"
+                    >Field test</span
+                ></a
+            >
+            <button
+                type="button"
+                class="marketing-mobile-menu-button inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/70 transition hover:text-white lg:hidden"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="marketing-mobile-panel"
+                data-mobile-menu-button
+            >
+                <svg
+                    data-mobile-icon="open"
+                    class="size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg
+                >
+                <svg
+                    data-mobile-icon="close"
+                    class="size-4 hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg
+                >
+            </button>
+        </div>
+    </nav>
+
+    <div
+        id="marketing-mobile-panel"
+        class="marketing-mobile-panel hidden border-t border-white/10 lg:hidden"
+        data-mobile-menu-panel
+    >
+        <div class="marketing-shell py-5">
+            <ul class="flex flex-col gap-1">
+                {
+                    navLinks.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                class:list={[
+                                    "marketing-mobile-link block rounded-lg px-3 py-2.5 text-[15px] font-medium",
+                                    isActive(link) && "is-active",
+                                ]}
+                                data-mobile-menu-link
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+            <div class="mt-5 grid gap-2 border-t border-white/8 pt-5">
+                <ScheduleDemoIsland
+                    client:load
+                    theme="light"
+                    abbreviateOnNarrow={false}
+                    buttonClass={scheduleDemoMobileButtonClass}
+                />
+                <a
+                    href="https://app.bolttms.com/register?step=registration"
+                    class="landing-cta inline-flex h-11 w-full items-center justify-center rounded-full bg-white px-5 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
+                    >Start field test</a
+                >
+                <a
+                    href="https://app.bolttms.com/"
+                    class="marketing-mobile-secondary inline-flex h-11 w-full items-center justify-center rounded-full border px-5 text-[14px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
+                    >Sign in</a
+                >
+            </div>
+        </div>
+    </div>
+</header>
+
+<slot />
+
+<footer
+    class="landing-footer relative z-10 mt-12 border-t border-white/10 bg-[#050606] py-12"
+>
+    <div class="marketing-shell">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {
+                footerData.columns.map((col) => (
+                    <div>
+                        <h3 class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                            {col.heading}
+                        </h3>
+                        <ul class="mt-5 space-y-3">
+                            {col.links.map((link) => (
+                                <li>
+                                    <a
+                                        href={link.href}
+                                        class="text-[14px] text-white/72 transition hover:text-white"
+                                    >
+                                        {link.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+        <div
+            class="mt-14 border-t border-white/8 pt-7 font-mono text-[11px] uppercase tracking-[0.16em] text-white/45"
+        >
+            © {year} Bolt System · Built in Nashville, TN
+        </div>
+    </div>
+</footer>
+
+<script is:inline>
+    /* Theme toggle (shared across marketing chrome). Sync via storage event so
+     * the homepage Vue island can update its own internal isLightMode state. */
+    (function () {
+        var root = document.getElementById("landing-top");
+        if (!root) return;
+        var toggles = document.querySelectorAll("[data-theme-toggle]");
+
+        function syncIcons() {
+            var dark = root.classList.contains("landing-dark");
+            toggles.forEach(function (btn) {
+                var moon = btn.querySelector('[data-theme-icon="moon"]');
+                var sun = btn.querySelector('[data-theme-icon="sun"]');
+                if (!moon || !sun) return;
+                if (dark) {
+                    moon.classList.add("hidden");
+                    sun.classList.remove("hidden");
+                    btn.setAttribute(
+                        "aria-label",
+                        "Switch landing page to light mode"
+                    );
+                } else {
+                    moon.classList.remove("hidden");
+                    sun.classList.add("hidden");
+                    btn.setAttribute(
+                        "aria-label",
+                        "Switch landing page to dark mode"
+                    );
+                }
+            });
+        }
+        syncIcons();
+
+        function setTheme(nextDark) {
+            root.classList.toggle("landing-dark", nextDark);
+            root.classList.toggle("landing-light", !nextDark);
+            try {
+                localStorage.setItem(
+                    "bolt-landing-theme",
+                    nextDark ? "dark" : "light"
+                );
+            } catch (_) {}
+            syncIcons();
+            window.dispatchEvent(
+                new CustomEvent("bolt-landing-theme-change", {
+                    detail: { theme: nextDark ? "dark" : "light" },
+                })
+            );
+        }
+
+        toggles.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                setTheme(!root.classList.contains("landing-dark"));
+            });
+        });
+    })();
+
+    /* Mobile menu drawer */
+    (function () {
+        var btn = document.querySelector("[data-mobile-menu-button]");
+        var panel = document.querySelector("[data-mobile-menu-panel]");
+        if (!btn || !panel) return;
+        var openIcon = btn.querySelector('[data-mobile-icon="open"]');
+        var closeIcon = btn.querySelector('[data-mobile-icon="close"]');
+
+        function setOpen(open) {
+            panel.classList.toggle("hidden", !open);
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            if (openIcon) openIcon.classList.toggle("hidden", open);
+            if (closeIcon) closeIcon.classList.toggle("hidden", !open);
+        }
+
+        btn.addEventListener("click", function () {
+            setOpen(panel.classList.contains("hidden"));
+        });
+
+        // Close after navigating via in-panel link.
+        panel.querySelectorAll("[data-mobile-menu-link]").forEach(function (a) {
+            a.addEventListener("click", function () {
+                setOpen(false);
+            });
+        });
+
+        // Close when transitioning back to >=lg.
+        var mq = window.matchMedia("(min-width: 1024px)");
+        function onMq(e) {
+            if (e.matches) setOpen(false);
+        }
+        if (mq.addEventListener) mq.addEventListener("change", onMq);
+        else mq.addListener(onMq);
+    })();
+</script>

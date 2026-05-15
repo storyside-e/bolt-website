@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./landing-page.css";
 
 /* Geist Sans + Geist Mono — variable fonts only */
 @font-face {
@@ -82,6 +83,29 @@
     --ring: hsl(0 0% 83.1%);
 }
 
+/* Teleported demo modal on body: inherit light tokens from :root; mirror dark when landing is dark. */
+.schedule-demo-root[data-landing-theme='dark'] {
+    --background: hsl(0 0% 3.9%);
+    --foreground: hsl(0 0% 98%);
+    --muted: hsl(0 0% 14.9%);
+    --muted-foreground: hsl(0 0% 63.9%);
+    --card: hsl(0 0% 3.9%);
+    --card-foreground: hsl(0 0% 98%);
+    --primary: hsl(0 0% 98%);
+    --primary-foreground: hsl(0 0% 9%);
+    --sidebar: hsl(240 5.9% 10%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --popover: hsl(0 0% 3.9%);
+    --popover-foreground: hsl(0 0% 98%);
+    --border: hsl(0 0% 14.9%);
+    --input: hsl(0 0% 14.9%);
+    --secondary: hsl(0 0% 14.9%);
+    --secondary-foreground: hsl(0 0% 98%);
+    --accent: hsl(0 0% 14.9%);
+    --accent-foreground: hsl(0 0% 98%);
+    --ring: hsl(0 0% 83.1%);
+}
+
 /* Tailwind v4 changed `border` (no color) from gray-200 to currentColor.
    The component uses naked `border` extensively, so without this shim
    every card/table picks up the foreground color. Match the source app. */
@@ -127,4 +151,428 @@ body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Slim contact strip (landing + marketing subpages) */
+.landing-preheader,
+.marketing-preheader {
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    background: #060708;
+    color: rgb(255 255 255 / 0.52);
+}
+
+#landing-top.landing-light .landing-preheader {
+    border-bottom-color: rgb(0 0 0 / 0.085);
+    background: #e8e8e6;
+    color: rgb(30 41 59 / 0.88);
+}
+
+#landing-top.landing-light .landing-preheader a {
+    color: rgb(30 41 59 / 0.9);
+}
+
+#landing-top.landing-light .landing-preheader a:hover {
+    color: rgb(15 23 42);
+}
+
+.landing-preheader a:hover,
+.marketing-preheader a:hover {
+    color: rgb(255 255 255 / 0.95);
+}
+
+#landing-top.landing-light .marketing-preheader {
+    border-bottom-color: rgb(0 0 0 / 0.085);
+    background: #e8e8e6;
+    color: rgb(30 41 59 / 0.88);
+}
+
+#landing-top.landing-light .marketing-preheader a {
+    color: rgb(30 41 59 / 0.9);
+}
+
+#landing-top.landing-light .marketing-preheader a:hover {
+    color: rgb(15 23 42);
+}
+
+/* Marketing subpages (pricing, contact): hero inherits page cream — no gradient rectangle */
+#landing-top.landing-light .marketing-subpage-main .landing-section-hero {
+    background: transparent;
+}
+
+.schedule-demo-dialog-animate {
+    animation: schedule-drawer-in 0.32s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+@keyframes schedule-drawer-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0.92;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .schedule-demo-dialog-animate {
+        animation: none;
+    }
+}
+
+/* Value props band — light landing */
+#landing-top.landing-light .alternative-marketing-hero {
+    border-top-color: rgb(0 0 0 / 0.07);
+    background: hsl(42 32% 95%);
+    color: #0f172a;
+}
+
+#landing-top.landing-light .alternative-marketing-hero h2,
+#landing-top.landing-light .alternative-marketing-hero h3 {
+    color: #0f172a;
+}
+
+#landing-top.landing-light .alternative-marketing-hero p {
+    color: rgb(51 65 85);
+}
+
+#landing-top.landing-light .alternative-marketing-hero .border-white\/10 {
+    border-color: rgb(0 0 0 / 0.08);
+}
+
+#landing-top.landing-light .alternative-marketing-hero .bg-white\/\[0\.04\] {
+    background: rgb(255 255 255 / 0.72);
+}
+
+#landing-top.landing-light .alternative-marketing-hero .text-white\/58,
+#landing-top.landing-light .alternative-marketing-hero .text-white\/68 {
+    color: rgb(30 41 59 / 0.78);
+}
+
+/* Pricing: soft surfaces that read as part of the cream page, not floating white tiles */
+#landing-top.landing-light .pricing-surface {
+    background: rgb(255 255 255 / 0.38);
+    border-color: rgb(15 23 42 / 0.07);
+    box-shadow: none;
+}
+
+#landing-top.landing-light .pricing-surface .divide-y > :not([hidden]) ~ :not([hidden]) {
+    border-color: rgb(15 23 42 / 0.07);
+}
+
+#landing-top.landing-light .pricing-estimator-total {
+    background: rgb(255 255 255 / 0.45);
+    border-color: rgb(15 23 42 / 0.07);
+}
+
+#landing-top.landing-light label.pricing-estimator-check input[type='checkbox'] {
+    border-color: rgb(15 23 42 / 0.22);
+    background: rgb(255 255 255 / 0.95);
+}
+
+/* -------- Pricing page: hero quick-stats + estimator shell + rate cards ----- */
+
+.pricing-hero-stat {
+    background: rgb(7 8 8 / 0.55);
+    padding: 1rem 1.25rem;
+}
+
+.pricing-hero-stat-label {
+    color: rgb(255 255 255 / 0.42);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.pricing-hero-stat-value {
+    color: rgb(255 255 255);
+    display: block;
+    font-feature-settings: 'tnum';
+    font-size: clamp(1.4rem, 1.8vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 0.4rem;
+}
+
+.pricing-hero-stat-suffix {
+    color: rgb(255 255 255 / 0.5);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-left: 0.35rem;
+    text-transform: lowercase;
+}
+
+#landing-top.landing-light .pricing-hero-stat {
+    background: rgb(255 255 255 / 0.55);
+}
+
+#landing-top.landing-light .pricing-hero-stat-label {
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .pricing-hero-stat-value {
+    color: rgb(15 23 42);
+}
+
+#landing-top.landing-light .pricing-hero-stat-suffix {
+    color: rgb(71 85 105 / 0.85);
+}
+
+/* Estimator shell: a sticky, slightly-floated panel with Bolt-yellow accent */
+.pricing-estimator-shell {
+    background:
+        linear-gradient(180deg, rgb(250 204 21 / 0.06), rgb(250 204 21 / 0)) ,
+        rgb(7 8 8 / 0.6);
+    border: 1px solid rgb(250 204 21 / 0.22);
+    border-radius: 1.25rem;
+    box-shadow:
+        0 0 0 1px rgb(250 204 21 / 0.04),
+        0 30px 60px -45px rgb(0 0 0 / 0.6);
+    padding: 1.25rem 1.25rem 1rem;
+    position: relative;
+}
+
+.pricing-estimator-shell::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #facc15 25%,
+        #facc15 75%,
+        transparent 100%
+    );
+    border-radius: 1.25rem 1.25rem 0 0;
+    content: '';
+    height: 2px;
+    left: 18%;
+    opacity: 0.55;
+    pointer-events: none;
+    position: absolute;
+    right: 18%;
+    top: -1px;
+}
+
+@media (min-width: 1024px) {
+    .pricing-estimator-shell {
+        position: sticky;
+        top: 96px;
+    }
+}
+
+.pricing-estimator-tag {
+    align-items: center;
+    color: rgb(250 204 21 / 0.92);
+    display: inline-flex;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 600;
+    gap: 0.5rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.35rem;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+}
+
+.pricing-estimator-tag-dot {
+    animation: pricing-estimator-pulse 2s ease-in-out infinite;
+    background: #facc15;
+    border-radius: 9999px;
+    box-shadow: 0 0 0 3px rgb(250 204 21 / 0.18);
+    display: inline-block;
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+@keyframes pricing-estimator-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+}
+
+#landing-top .pricing-estimator-shell > [aria-labelledby='pricing-estimator-heading'] {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0.25rem 0.25rem 0;
+}
+
+#landing-top.landing-light .pricing-estimator-shell {
+    background:
+        linear-gradient(180deg, #fffaeb, rgb(255 250 235 / 0.5) 70%, rgb(255 255 255 / 0.4) 100%);
+    border-color: rgb(180 132 0 / 0.32);
+    box-shadow:
+        0 0 0 1px rgb(180 132 0 / 0.04),
+        0 24px 50px -38px rgb(120 80 0 / 0.4);
+}
+
+#landing-top.landing-light .pricing-estimator-shell::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgb(180 132 0 / 0.7) 25%,
+        rgb(180 132 0 / 0.7) 75%,
+        transparent 100%
+    );
+    opacity: 0.7;
+}
+
+#landing-top.landing-light .pricing-estimator-tag {
+    color: rgb(146 105 0);
+}
+
+/* Rate cards (the “Three numbers” band) */
+.pricing-rate-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .pricing-rate-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+.pricing-rate-card {
+    background: rgb(7 8 8 / 0.45);
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.25rem 1.25rem 1.4rem;
+    position: relative;
+}
+
+.pricing-rate-card-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.pricing-rate-card-eyebrow {
+    color: rgb(255 255 255 / 0.55);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.pricing-rate-card-amount {
+    color: rgb(255 255 255);
+    font-feature-settings: 'tnum';
+    font-size: 1.65rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1;
+}
+
+.pricing-rate-card-amount-suffix {
+    color: rgb(255 255 255 / 0.5);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-left: 0.3rem;
+    text-transform: lowercase;
+}
+
+.pricing-rate-card-body {
+    color: rgb(255 255 255 / 0.62);
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+#landing-top.landing-light .pricing-rate-card {
+    background: rgb(255 255 255 / 0.55);
+    border-color: rgb(15 23 42 / 0.08);
+}
+
+#landing-top.landing-light .pricing-rate-card-eyebrow {
+    color: rgb(71 85 105);
+}
+
+#landing-top.landing-light .pricing-rate-card-amount {
+    color: rgb(15 23 42);
+}
+
+#landing-top.landing-light .pricing-rate-card-amount-suffix {
+    color: rgb(71 85 105 / 0.85);
+}
+
+#landing-top.landing-light .pricing-rate-card-body {
+    color: rgb(51 65 85);
+}
+
+/* Pricing hero is the same cream as the rest of the page in light mode */
+#landing-top.landing-light .pricing-hero {
+    background: transparent;
+}
+
+/* Marketing chrome: logo swap + theme-aware schedule-demo nav button --------- */
+.marketing-chrome-logo--light {
+    display: inline-block;
+}
+.marketing-chrome-logo--dark {
+    display: none;
+}
+#landing-top.landing-dark .marketing-chrome-logo--light {
+    display: none;
+}
+#landing-top.landing-dark .marketing-chrome-logo--dark {
+    display: inline-block;
+}
+
+/* Schedule-demo button in the marketing nav: adapts to landing theme. */
+.marketing-nav-schedule {
+    border-color: rgb(255 255 255 / 0.16);
+    background: rgb(255 255 255 / 0.05);
+    color: rgb(255 255 255 / 0.85);
+}
+
+.marketing-nav-schedule:hover {
+    border-color: rgb(255 255 255 / 0.28);
+    background: rgb(255 255 255 / 0.1);
+    color: rgb(255 255 255);
+}
+
+#landing-top.landing-light .marketing-nav-schedule {
+    border-color: rgb(0 0 0 / 0.14);
+    background: rgb(0 0 0 / 0.03);
+    color: rgb(0 0 0 / 0.78);
+}
+
+#landing-top.landing-light .marketing-nav-schedule:hover {
+    border-color: rgb(0 0 0 / 0.22);
+    background: rgb(0 0 0 / 0.06);
+    color: rgb(0 0 0);
+}
+
+/* Secondary CTAs on marketing subpages (Schedule demo, Contact sales). */
+.marketing-secondary-cta {
+    border-color: rgb(255 255 255 / 0.14);
+    background: transparent;
+    color: rgb(255 255 255 / 0.78);
+}
+
+.marketing-secondary-cta:hover {
+    border-color: rgb(255 255 255 / 0.3);
+    color: rgb(255 255 255);
+}
+
+#landing-top.landing-light .marketing-secondary-cta {
+    border-color: rgb(0 0 0 / 0.14);
+    background: rgb(0 0 0 / 0.03);
+    color: rgb(0 0 0 / 0.78);
+}
+
+#landing-top.landing-light .marketing-secondary-cta:hover {
+    border-color: rgb(0 0 0 / 0.22);
+    background: rgb(0 0 0 / 0.06);
+    color: rgb(0 0 0);
 }

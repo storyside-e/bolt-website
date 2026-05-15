@@ -1,0 +1,16 @@
+{
+  "sales": {
+    "label": "Sales",
+    "phoneDisplay": "615-777-7221",
+    "phoneHref": "tel:6157777221",
+    "emailDisplay": "sales@boltsystem.com",
+    "emailHref": "mailto:sales@boltsystem.com"
+  },
+  "support": {
+    "label": "Support",
+    "phoneDisplay": "888-424-4638",
+    "phoneHref": "tel:8884244638",
+    "emailDisplay": "support@boltsystem.com",
+    "emailHref": "mailto:support@boltsystem.com"
+  }
+}

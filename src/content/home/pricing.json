@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "Pricing · Bolt TMS",
+    "description": "Straightforward TMS pricing: 90-day field test, then month-to-month. Self-serve signup—no enterprise sales tax."
+  },
+  "hero": {
+    "headline": "Better than the other guys. Less expensive, too.",
+    "subhead": "Fully functional TMS for small, mid-sized, and large carriers—the same product whether you run 5 trucks or 500. Start with a 90-day field test on your operation; after that it’s month-to-month with no long-term contract.",
+    "contrastLine": "Enterprise TMS quotes often bake in months of demos and steak dinners. We’d rather ship software you can afford."
+  },
+  "rates": {
+    "perUnitLabel": "Per active truck or driver / month",
+    "perUnitDetail": "We bill on whichever count is higher—trucks or drivers—so you’re aligned with how your fleet actually runs.",
+    "perUnitAmount": "$20",
+    "minimumLabel": "Monthly minimum",
+    "minimumAmount": "$100",
+    "brokerageTitle": "Brokerage add-on",
+    "brokerageDescription": "Add outside carriers to your network, assign them loads, and keep brokerage workflows inside Bolt.",
+    "brokerageAmount": "$200",
+    "brokerageSuffix": "/ month"
+  },
+  "estimator": {
+    "trucksLabel": "Active trucks (typical)",
+    "driversLabel": "Active drivers (typical)",
+    "brokerageToggle": "Include brokerage add-on (+$200/mo)"
+  },
+  "trialNote": "90-day field test · Month-to-month after · No long-term contract",
+  "faq": [
+    {
+      "q": "What is the 90-day field test?",
+      "a": "You run Bolt on your real freight and workflows for 90 days—enough time to know if it fits. After that, every plan is month-to-month unless you agree otherwise in writing. No multi-year lock-in by default."
+    },
+    {
+      "q": "What counts as “active”?",
+      "a": "Details are confirmed during onboarding; generally it’s operational capacity you’re using in Bolt in a given billing period. Ask sales if you have an edge case."
+    },
+    {
+      "q": "When do I need the brokerage add-on?",
+      "a": "When you want to manage third-party carriers and assign loads to them inside the platform. Asset-only fleets can skip it."
+    }
+  ],
+  "disclaimer": "Pricing as of May 2026. Final fees are subject to your agreement with Bolt and may change; we’ll always communicate updates clearly."
+}

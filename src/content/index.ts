@@ -7,16 +7,22 @@ import integrationsJson from './home/integrations.json'
 import testimonialsJson from './home/testimonials.json'
 import footerJson from './home/footer.json'
 import demoJson from './home/demo.json'
+import comparisonJson from './home/comparison.json'
+import contactJson from './home/contact.json'
+import pricingJson from './home/pricing.json'
 
 import { resolveIcon } from './icons'
 import {
     capabilitiesSchema,
     capabilitySchema,
+    comparisonSchema,
     demoSchema,
     footerSchema,
     heroSchema,
     integrationHandoffSchema,
     integrationsSchema,
+    pricingPageSchema,
+    siteContactSchema,
     testimonialsSchema,
 } from './schemas'
 
@@ -49,6 +55,9 @@ const testimonialsParsed = safeParse(
 )
 const footerParsed = safeParse('footer', footerSchema, footerJson)
 const demoParsed = safeParse('demo', demoSchema, demoJson)
+const comparisonParsed = safeParse('comparison', comparisonSchema, comparisonJson)
+const siteContactParsed = safeParse('contact', siteContactSchema, contactJson)
+const pricingPageParsed = safeParse('pricing', pricingPageSchema, pricingJson)
 
 type Capability = z.infer<typeof capabilitySchema>
 type IntegrationHandoff = z.infer<typeof integrationHandoffSchema>
@@ -79,3 +88,9 @@ export const testimonials = testimonialsParsed.items
 export const fleetSizeOptions = demoParsed.fleetSizeOptions
 
 export const footerColumns = footerParsed.columns
+
+export const siteContact = siteContactParsed
+
+export const pricingPage = pricingPageParsed
+
+export const comparisonContent = comparisonParsed

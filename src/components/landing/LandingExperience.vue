@@ -6,11 +6,58 @@
             isLightMode ? 'landing-light' : 'landing-dark',
         ]"
     >
+        <div class="landing-preheader">
+            <div
+                class="mx-auto flex max-w-[1240px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 py-2 text-[11px] leading-snug sm:justify-between sm:px-8 sm:text-[12px] lg:px-12 xl:px-16"
+            >
+                <div
+                    class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-start"
+                >
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] opacity-65">
+                        {{ siteContact.sales.label }}
+                    </span>
+                    <a
+                        :href="siteContact.sales.phoneHref"
+                        class="tabular-nums transition hover:underline"
+                    >
+                        {{ siteContact.sales.phoneDisplay }}
+                    </a>
+                    <span class="opacity-40" aria-hidden="true">·</span>
+                    <a
+                        :href="siteContact.sales.emailHref"
+                        class="break-all transition hover:underline"
+                    >
+                        {{ siteContact.sales.emailDisplay }}
+                    </a>
+                </div>
+                <div
+                    class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 sm:justify-end"
+                >
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] opacity-65">
+                        {{ siteContact.support.label }}
+                    </span>
+                    <a
+                        :href="siteContact.support.phoneHref"
+                        class="tabular-nums transition hover:underline"
+                    >
+                        {{ siteContact.support.phoneDisplay }}
+                    </a>
+                    <span class="opacity-40" aria-hidden="true">·</span>
+                    <a
+                        :href="siteContact.support.emailHref"
+                        class="break-all transition hover:underline"
+                    >
+                        {{ siteContact.support.emailDisplay }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <header
             class="landing-site-header supports-[backdrop-filter]:bg-[#070808]/80 sticky top-0 z-30 border-b border-white/10 bg-[#070808]/90 backdrop-blur-xl backdrop-saturate-150"
         >
             <nav
-                class="relative flex h-[72px] w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16"
+                class="relative mx-auto flex h-[72px] w-full max-w-[1240px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16"
                 aria-label="Public navigation"
             >
                 <a
@@ -26,7 +73,7 @@
                 </a>
 
                 <div
-                    class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-[12px] font-medium text-white/55 md:flex"
+                    class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-[12px] font-medium text-white/55 lg:flex xl:gap-8"
                 >
                     <a href="#landing-top" class="transition hover:text-white">
                         Home
@@ -37,12 +84,18 @@
                     <a href="#integrations" class="transition hover:text-white">
                         Integrations
                     </a>
+                    <a :href="withBase('/pricing')" class="transition hover:text-white">
+                        Pricing
+                    </a>
+                    <a :href="withBase('/contact')" class="transition hover:text-white">
+                        Contact
+                    </a>
                 </div>
 
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5 sm:gap-2">
                     <button
                         type="button"
-                        class="landing-theme-toggle inline-flex size-10 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:text-white"
+                        class="landing-theme-toggle inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:text-white"
                         :aria-label="
                             isLightMode
                                 ? 'Switch landing page to dark mode'
@@ -55,15 +108,28 @@
                     </button>
                     <a
                         href="https://app.bolttms.com/"
-                        class="hidden rounded-md px-3 py-2 text-[12px] font-medium text-white/55 hover:text-white sm:inline-flex"
+                        class="hidden rounded-md px-2.5 py-2 text-[12px] font-medium text-white/55 hover:text-white xl:inline-flex"
                     >
                         Sign in
                     </a>
+                    <button
+                        type="button"
+                        class="hidden h-9 shrink-0 items-center rounded-full border px-3.5 text-[12px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] sm:inline-flex md:px-4"
+                        :class="
+                            isLightMode
+                                ? 'border-black/14 bg-black/[0.03] text-black/78 hover:border-black/22 hover:bg-black/[0.06]'
+                                : 'border-white/14 bg-white/[0.05] text-white/82 hover:border-white/26 hover:bg-white/[0.09]'
+                        "
+                        @click="openScheduleDemo"
+                    >
+                        <span class="hidden lg:inline">Schedule demo</span>
+                        <span class="lg:hidden">Demo</span>
+                    </button>
                     <a
                         href="https://app.bolttms.com/register?step=registration"
-                        class="landing-cta inline-flex h-10 items-center rounded-full bg-white px-5 text-[12px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] active:translate-y-px"
+                        class="landing-cta inline-flex h-9 shrink-0 items-center rounded-full bg-white px-4 text-[12px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] active:translate-y-px sm:h-10 sm:px-5"
                     >
-                        Start free
+                        <span class="hidden sm:inline">Start field test</span><span class="sm:hidden">Field test</span>
                     </a>
                 </div>
             </nav>
@@ -103,14 +169,14 @@
                         <p
                             class="mt-6 max-w-xl text-pretty text-[16px] leading-relaxed text-white/55 sm:text-[18px]"
                         >
-                            If your TMS quote is higher than your truck payment, you’re paying for sales calls. Bolt is self-serve and live in an hour.
+                            If your TMS quote is higher than your truck payment, you’re paying for sales calls. Bolt is self-serve and live in an hour—start with a 90-day field test, then stay month-to-month.
                         </p>
                         <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:gap-4">
                             <a
                                 href="https://app.bolttms.com/register?step=registration"
                                 class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                             >
-                                Start your free trial
+                                Start your field test
                             </a>
                             <a
                                 href="#preview"
@@ -119,8 +185,8 @@
                                 See the live preview
                             </a>
                         </div>
-                        <p class="mt-4 text-[13px] text-white/45">
-                            7 days, no contract, no commitment
+                        <p class="mt-4 max-w-lg text-[13px] leading-relaxed text-white/45">
+                            90-day field test on your freight. Month-to-month after—no long-term contract.
                         </p>
                         <dl
                             class="mt-12 grid w-full max-w-xl grid-cols-3 grid-rows-[auto_auto] gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left backdrop-blur"
@@ -211,6 +277,8 @@
                     </div>
                 </div>
             </section>
+
+            <AlternativeMarketingHero @schedule-demo="openScheduleDemo" />
 
             <section
                 id="preview"
@@ -3343,6 +3411,30 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="landing-section-cta scroll-reveal mt-16">
+                        <div class="landing-section-cta-text">
+                            <p class="landing-section-cta-eyebrow">Try it on your freight</p>
+                            <p class="landing-section-cta-headline">
+                                Wire up dispatch, billing, and pay in an afternoon.
+                            </p>
+                        </div>
+                        <div class="landing-section-cta-actions">
+                            <a
+                                href="https://app.bolttms.com/register?step=registration"
+                                class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
+                            >
+                                Start your field test
+                            </a>
+                            <button
+                                type="button"
+                                class="landing-section-cta-secondary inline-flex h-11 items-center justify-center rounded-full border border-white/14 px-5 text-[14px] font-medium text-white/72 transition hover:border-white/28 hover:text-white"
+                                @click="openScheduleDemo"
+                            >
+                                Schedule a demo
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -3549,8 +3641,60 @@
                             <span class="partner-roadmap-request-arrow" aria-hidden="true">→</span>
                         </a>
                     </div>
+
+                    <div class="landing-section-cta scroll-reveal mt-16">
+                        <div class="landing-section-cta-text">
+                            <p class="landing-section-cta-eyebrow">See it run on your stack</p>
+                            <p class="landing-section-cta-headline">
+                                Bring your tools — we’ll show you the handoffs in 20 minutes.
+                            </p>
+                        </div>
+                        <div class="landing-section-cta-actions">
+                            <button
+                                type="button"
+                                class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
+                                @click="openScheduleDemo"
+                            >
+                                Schedule a demo
+                            </button>
+                            <a
+                                href="https://app.bolttms.com/register?step=registration"
+                                class="landing-section-cta-secondary inline-flex h-11 items-center justify-center rounded-full border border-white/14 px-5 text-[14px] font-medium text-white/72 transition hover:border-white/28 hover:text-white"
+                            >
+                                Start your field test
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            <TmsComparisonSection :content="comparisonContent">
+                <template #after>
+                    <div class="landing-section-cta scroll-reveal mt-12">
+                        <div class="landing-section-cta-text">
+                            <p class="landing-section-cta-eyebrow">Why pay for sales calls?</p>
+                            <p class="landing-section-cta-headline">
+                                Skip the steak dinner. Run Bolt on your lanes for 90 days.
+                            </p>
+                        </div>
+                        <div class="landing-section-cta-actions">
+                            <a
+                                href="https://app.bolttms.com/register?step=registration"
+                                class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
+                            >
+                                Start your field test
+                            </a>
+                            <button
+                                type="button"
+                                class="landing-section-cta-secondary inline-flex h-11 items-center justify-center rounded-full border border-white/14 px-5 text-[14px] font-medium text-white/72 transition hover:border-white/28 hover:text-white"
+                                @click="openScheduleDemo"
+                            >
+                                Schedule a demo
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </TmsComparisonSection>
 
             <!-- Testimonials hidden until we have real customer quotes; flip v-if to true to restore. -->
             <section
@@ -3653,9 +3797,9 @@
                     <ul class="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3">
                         <li
                             v-for="point in [
-                                '7 days free. No contract.',
+                                '90-day field test. Month-to-month after—no long-term contract.',
                                 'Connect accounting, invoicing, and telematics in minutes — e.g. QuickBooks Online and Samsara when you use them.',
-                                'Invite your dispatch team once the trial proves it.',
+                                'Invite your dispatch team once the field test proves it.',
                             ]"
                             :key="point"
                             class="flex items-start gap-3 text-[14px] leading-6 text-white/72"
@@ -3669,7 +3813,7 @@
                             href="https://app.bolttms.com/register?step=registration"
                             class="landing-cta inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                         >
-                            Start your free trial
+                            Start your field test
                         </a>
                         <a
                             href="https://app.bolttms.com/"
@@ -3698,6 +3842,42 @@
                                 All systems operational
                             </span>
                         </div>
+                        <ul class="mt-8 space-y-2 border-t border-white/8 pt-6 text-[13px] leading-relaxed text-white/72">
+                            <li>
+                                <a
+                                    :href="siteContact.sales.phoneHref"
+                                    class="transition hover:text-white"
+                                >
+                                    Sales
+                                    {{ siteContact.sales.phoneDisplay }}
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    :href="siteContact.support.phoneHref"
+                                    class="transition hover:text-white"
+                                >
+                                    Support
+                                    {{ siteContact.support.phoneDisplay }}
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    :href="siteContact.sales.emailHref"
+                                    class="break-all transition hover:text-white"
+                                >
+                                    {{ siteContact.sales.emailDisplay }}
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    :href="siteContact.support.emailHref"
+                                    class="break-all transition hover:text-white"
+                                >
+                                    {{ siteContact.support.emailDisplay }}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     <nav
                         class="grid gap-10 sm:grid-cols-4 lg:col-span-8"
@@ -3727,6 +3907,12 @@
                 </div>
             </div>
         </footer>
+
+        <ScheduleDemoModal
+            v-model="scheduleDemoOpen"
+            :logo-src="landingLogo"
+            :theme="isLightMode ? 'light' : 'dark'"
+        />
     </div>
 </template>
 
@@ -3766,13 +3952,18 @@ import {
     Users,
     Wallet,
 } from 'lucide-vue-next'
+import AlternativeMarketingHero from './AlternativeMarketingHero.vue'
+import ScheduleDemoModal from './ScheduleDemoModal.vue'
+import TmsComparisonSection from './TmsComparisonSection.vue'
 import {
     capabilities,
+    comparisonContent,
     featuredIntegrations,
     footerColumns,
     heroStats,
     integrationHandoffs,
     partnerRoadmap,
+    siteContact,
     testimonials,
 } from '../../content'
 
@@ -3789,6 +3980,12 @@ const REPORTS = 'reports'
 const SETTINGS = 'settings'
 const basePath = import.meta.env.BASE_URL || '/'
 
+function withBase(path) {
+    const root = String(basePath || '/').replace(/\/$/, '')
+    const p = path.startsWith('/') ? path : `/${path}`
+    return root ? `${root}${p}` : p
+}
+
 const screen = ref(DASHBOARD)
 const activeShipmentId = ref('SHP-91')
 const activeShipmentTab = ref('Stops')
@@ -3796,6 +3993,18 @@ const activeNavigationLabel = ref('Dashboard')
 const selectedInvoiceId = ref('INV-1048')
 const activeSettingsSection = ref('General')
 const isLightMode = ref(true)
+const scheduleDemoOpen = ref(false)
+
+if (typeof window !== 'undefined') {
+    try {
+        const stored = window.localStorage.getItem('bolt-landing-theme')
+        if (stored === 'dark') {
+            isLightMode.value = false
+        }
+    } catch (_) {
+        /* ignore storage failures (private mode, etc.) */
+    }
+}
 
 const landingLogo = computed(() =>
     isLightMode.value ? logoFull : logoFullYellowWhite
@@ -3803,6 +4012,20 @@ const landingLogo = computed(() =>
 
 function toggleLandingTheme() {
     isLightMode.value = !isLightMode.value
+    if (typeof window !== 'undefined') {
+        try {
+            window.localStorage.setItem(
+                'bolt-landing-theme',
+                isLightMode.value ? 'light' : 'dark'
+            )
+        } catch (_) {
+            /* ignore storage failures */
+        }
+    }
+}
+
+function openScheduleDemo() {
+    scheduleDemoOpen.value = true
 }
 
 const currentYear = new Date().getFullYear()
@@ -5269,1938 +5492,3 @@ export default {
     name: 'Landing',
 }
 </script>
-
-<style>
-/* ---- Marketing landing: depth, single accent, section rhythm (Geist stack) ---- */
-#landing-top.landing-page {
-    position: relative;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-}
-
-#landing-top.landing-dark {
-    --landing-accent: #facc15;
-    --landing-accent-soft: rgb(250 204 21 / 0.14);
-    --landing-veil-warm: rgb(250 190 50 / 0.055);
-    --landing-veil-cool: rgb(255 255 255 / 0.04);
-}
-
-#landing-top.landing-light {
-    --landing-accent: hsl(45 94% 48%);
-    --landing-accent-soft: rgb(180 120 0 / 0.12);
-    --landing-veil-warm: rgb(255 220 120 / 0.2);
-    --landing-veil-cool: rgb(15 23 42 / 0.04);
-}
-
-#landing-top.landing-page::before {
-    background-image: radial-gradient(
-        rgb(255 255 255 / 0.11) 0.45px,
-        transparent 0.55px
-    );
-    background-size: 4px 4px;
-    content: '';
-    inset: 0;
-    mix-blend-mode: overlay;
-    opacity: 0.2;
-    pointer-events: none;
-    position: fixed;
-    z-index: 0;
-}
-
-#landing-top.landing-light.landing-page::before {
-    background-image: radial-gradient(
-        rgb(15 23 42 / 0.1) 0.45px,
-        transparent 0.55px
-    );
-    mix-blend-mode: multiply;
-    opacity: 0.12;
-}
-
-#landing-top.landing-page::after {
-    background:
-        radial-gradient(
-            100% 55% at 10% 0%,
-            var(--landing-veil-warm) 0%,
-            transparent 52%
-        ),
-        radial-gradient(
-            90% 50% at 88% 25%,
-            var(--landing-veil-cool) 0%,
-            transparent 50%
-        );
-    content: '';
-    inset: 0;
-    pointer-events: none;
-    position: fixed;
-    z-index: 0;
-}
-
-#landing-top.landing-light.landing-page::after {
-    background:
-        radial-gradient(
-            100% 50% at 12% 0%,
-            var(--landing-veil-warm) 0%,
-            transparent 55%
-        ),
-        radial-gradient(
-            80% 45% at 100% 15%,
-            var(--landing-veil-cool) 0%,
-            transparent 50%
-        );
-    opacity: 0.9;
-}
-
-.landing-main {
-    position: relative;
-    z-index: 1;
-}
-
-/* Get Started: pencil-style strike (single pseudo line; not UA line-through + line) */
-#get-started .landing-get-started-pencil-strike {
-    position: relative;
-    text-decoration: none;
-    z-index: 0;
-}
-
-/* Hand-drawn line + correction: tuned for the dark get-started bar; see #landing-top.landing-light #get-started for cream. */
-/* Replacement word: same ink as the h2 + weight + thin Bolt-yellow underline (no chip/panel). */
-#get-started .landing-get-started-correction {
-    box-shadow: 0 1px 0 0 rgb(250 204 21 / 0.38);
-    color: inherit;
-    font-weight: 800;
-    margin-inline-start: 0.2em;
-    padding: 0;
-    text-decoration: none;
-}
-
-#get-started .landing-get-started-headline-tail {
-    color: rgb(255 255 255 / 0.62);
-    font-weight: 400;
-}
-
-#get-started .landing-get-started-pencil-strike::after {
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgb(42 38 36 / 0.88) 8%,
-        rgb(26 24 22 / 0.96) 22% 78%,
-        rgb(42 38 36 / 0.88) 92%,
-        transparent 100%
-    );
-    border-radius: 0.1em 0.18em 0.12em 0.08em;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08);
-    content: '';
-    height: 0.16em;
-    left: 0.02em;
-    pointer-events: none;
-    position: absolute;
-    right: 0.04em;
-    top: 52%;
-    transform: translateY(-50%) rotate(-1.2deg) skewX(-4deg);
-    z-index: 1;
-}
-
-/* Light theme: section uses cream via .landing-light .bg-[#050606] — override span colors that outrank .landing-light .text-white. */
-#landing-top.landing-light #get-started .landing-get-started-headline-tail {
-    color: rgb(15 23 42 / 0.75);
-}
-
-#landing-top.landing-light #get-started .landing-get-started-pencil-strike::after {
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgb(15 23 42 / 0.5) 8%,
-        rgb(15 23 42 / 0.78) 22% 78%,
-        rgb(15 23 42 / 0.5) 92%,
-        transparent 100%
-    );
-    box-shadow: 0 0 0 1px rgb(15 23 42 / 0.12);
-}
-
-.landing-section-hero {
-    background: linear-gradient(180deg, #050606 0%, #080a0c 100%);
-}
-
-#landing-top.landing-light .landing-section-hero {
-    background: linear-gradient(
-        180deg,
-        hsl(42 38% 97%) 0%,
-        hsl(40 33% 95%) 100%
-    );
-}
-
-#landing-top.landing-light .landing-section-hero h1 {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .landing-section-hero > .mx-auto > .lg\:col-span-7 p {
-    color: rgb(75 85 99);
-}
-
-#landing-top.landing-dark a.landing-cta {
-    transition:
-        background-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-#landing-top.landing-dark a.landing-cta:hover {
-    box-shadow:
-        0 0 0 1px var(--landing-accent-soft),
-        0 12px 36px -6px rgb(0 0 0 / 0.55);
-    transform: translateY(-1px);
-}
-
-#landing-top.landing-dark a.landing-cta:active {
-    box-shadow: 0 0 0 1px var(--landing-accent-soft);
-    transform: translateY(0) scale(0.99);
-}
-
-#landing-top.landing-light a.landing-cta {
-    transition:
-        background-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-#landing-top.landing-light a.landing-cta:hover {
-    box-shadow: 0 10px 32px -8px rgb(15 23 42 / 0.2);
-    transform: translateY(-1px);
-}
-
-#landing-top.landing-light a.landing-cta:active {
-    transform: scale(0.99);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    #landing-top a.landing-cta:hover,
-    #landing-top a.landing-cta:active {
-        transform: none;
-    }
-}
-
-#landing-top.landing-dark .landing-section-preview {
-    box-shadow: 0 1px 0 0 var(--landing-accent-soft);
-}
-
-#landing-top.landing-dark .landing-section-demo {
-    background-image: linear-gradient(
-        180deg,
-        rgb(5 6 6 / 0) 0%,
-        rgb(250 200 20 / 0.03) 100%
-    );
-}
-
-#landing-top.landing-light .landing-section-demo {
-    background-image: linear-gradient(
-        180deg,
-        rgb(255 255 255 / 0) 0%,
-        rgb(250 220 160 / 0.15) 100%
-    );
-}
-
-#landing-top.landing-light .landing-section-preview {
-    box-shadow: 0 1px 0 0 rgb(15 23 42 / 0.08);
-}
-
-.preview-browser-stack {
-    --preview-frame-width: 1240px;
-
-    margin-left: clamp(1rem, 4vw, 1.5rem);
-    max-width: none;
-    width: calc(100vw - clamp(1rem, 4vw, 1.5rem));
-}
-
-.preview-browser-stack::after {
-    content: '';
-    inset-block: 0;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    width: 0;
-    z-index: 10;
-}
-
-.preview-browser-shell {
-    box-shadow:
-        0 70px 90px -56px rgb(15 23 42 / 0.58),
-        0 28px 52px -36px rgb(15 23 42 / 0.34),
-        0 1px 0 rgb(255 255 255 / 0.45) inset;
-    width: var(--preview-frame-width);
-}
-
-.preview-browser-frame {
-    width: var(--preview-frame-width);
-}
-
-.preview-browser-shadow {
-    background: rgb(15 23 42 / 0.16);
-    bottom: -14px;
-    filter: blur(28px);
-    height: clamp(24px, 3.4vw, 42px);
-    left: clamp(16px, 3vw, 32px);
-    opacity: 0.72;
-    width: min(
-        calc(var(--preview-frame-width) - 4rem),
-        calc(100% - clamp(32px, 6vw, 64px))
-    );
-}
-
-#landing-top.landing-dark .preview-browser-shell {
-    box-shadow:
-        0 70px 110px -50px rgb(0 0 0 / 0.8),
-        0 28px 56px -34px rgb(0 0 0 / 0.62),
-        0 1px 0 rgb(255 255 255 / 0.12) inset;
-}
-
-#landing-top.landing-dark .preview-browser-shadow {
-    background: rgb(0 0 0 / 0.42);
-    opacity: 0.78;
-}
-
-@media (max-width: 1263px) {
-    .preview-browser-stack::after {
-        background: linear-gradient(
-            90deg,
-            rgb(15 23 42 / 0),
-            rgb(15 23 42 / 0.34)
-        );
-        opacity: clamp(0.32, calc((1264px - 100vw) / 72), 1);
-        width: clamp(14px, calc((1264px - 100vw) * 3), 88px);
-    }
-
-    #landing-top.landing-dark .preview-browser-stack::after {
-        background: linear-gradient(
-            90deg,
-            rgb(5 6 6 / 0),
-            rgb(5 6 6 / 0.82)
-        );
-        opacity: clamp(0.32, calc((1264px - 100vw) / 140), 1);
-        width: min(
-            clamp(14px, calc((1264px - 100vw) * 2.2), 380px),
-            34vw
-        );
-    }
-}
-
-@media (max-width: 960px) {
-    .preview-browser-shell {
-        box-shadow:
-            0 34px 54px -42px rgb(15 23 42 / 0.52),
-            0 16px 32px -28px rgb(15 23 42 / 0.28),
-            0 1px 0 rgb(255 255 255 / 0.45) inset;
-    }
-
-    .preview-browser-shadow {
-        bottom: -10px;
-        filter: blur(22px);
-        height: 26px;
-        left: 16px;
-        opacity: 0.58;
-        width: calc(100% - 32px);
-    }
-
-    #landing-top.landing-dark .preview-browser-shell {
-        box-shadow:
-            0 36px 60px -40px rgb(0 0 0 / 0.7),
-            0 16px 34px -28px rgb(0 0 0 / 0.48),
-            0 1px 0 rgb(255 255 255 / 0.12) inset;
-    }
-}
-
-@media (max-width: 640px) {
-    .preview-browser-stack {
-        --preview-mobile-scale: 0.47;
-        --preview-mobile-height: 379px;
-
-        height: var(--preview-mobile-height);
-        margin-left: 16px;
-        overflow: visible;
-        width: calc(100vw - 32px);
-    }
-
-    .preview-browser-stack::after {
-        display: none;
-    }
-
-    .preview-browser-shell {
-        box-shadow:
-            0 20px 34px -26px rgb(15 23 42 / 0.42),
-            0 8px 20px -18px rgb(15 23 42 / 0.24),
-            0 1px 0 rgb(255 255 255 / 0.45) inset;
-        left: 50%;
-        transform: translateX(-50%) scale(var(--preview-mobile-scale));
-        transform-origin: top center;
-    }
-
-    #landing-top.landing-dark .preview-browser-shell {
-        box-shadow:
-            0 22px 38px -24px rgb(0 0 0 / 0.62),
-            0 8px 22px -18px rgb(0 0 0 / 0.42),
-            0 1px 0 rgb(255 255 255 / 0.12) inset;
-    }
-
-    .preview-browser-shadow {
-        bottom: -6px;
-        filter: blur(12px);
-        height: 14px;
-        left: 10px;
-        opacity: 0.38;
-        width: calc(100% - 20px);
-    }
-}
-
-@media (max-width: 600px) {
-    .preview-browser-stack {
-        --preview-mobile-scale: 0.44;
-        --preview-mobile-height: 355px;
-    }
-}
-
-@media (max-width: 560px) {
-    .preview-browser-stack {
-        --preview-mobile-scale: 0.41;
-        --preview-mobile-height: 330px;
-    }
-}
-
-@media (max-width: 480px) {
-    .preview-browser-stack {
-        --preview-mobile-scale: 0.36;
-        --preview-mobile-height: 290px;
-    }
-}
-
-@media (max-width: 400px) {
-    .preview-browser-stack {
-        --preview-mobile-scale: 0.29;
-        --preview-mobile-height: 234px;
-    }
-}
-
-@media (max-width: 360px) {
-    .preview-browser-stack {
-        --preview-mobile-scale: 0.26;
-        --preview-mobile-height: 210px;
-    }
-}
-
-@media (min-width: 1240px) {
-    .preview-browser-stack {
-        margin-left: max(1.5rem, calc((100vw - 1240px) / 2));
-        width: calc(100vw - max(1.5rem, calc((100vw - 1240px) / 2)));
-    }
-}
-
-#landing-top.landing-dark
-    .landing-integrations-section
-    .integration-connector:hover
-    .integration-point
-    svg {
-    color: rgb(250 204 21 / 0.55);
-    transition: color 0.2s ease;
-}
-
-.landing-dark .landing-integrations-section {
-    --integration-background: #050606;
-    --integration-border: rgb(255 255 255 / 0.14);
-    --integration-border-strong: rgb(255 255 255 / 0.2);
-    --integration-surface: rgb(255 255 255 / 0.045);
-    --integration-surface-strong: rgb(255 255 255 / 0.07);
-    --integration-text: rgb(255 255 255);
-    --integration-muted: rgb(255 255 255 / 0.66);
-    --integration-faint: rgb(255 255 255 / 0.42);
-    --integration-vendor-row: rgb(255 255 255 / 0.035);
-    --integration-mark-background: rgb(255 255 255);
-    --integration-mark-text: #101111;
-}
-
-.landing-light .landing-integrations-section {
-    --integration-background: hsl(42 38% 97%);
-    --integration-border: rgb(15 23 42 / 0.10);
-    --integration-border-strong: rgb(15 23 42 / 0.22);
-    --integration-surface: rgb(255 255 255);
-    --integration-surface-strong: rgb(255 255 255);
-    --integration-text: hsl(210 16% 12%);
-    --integration-muted: rgb(31 41 55 / 0.78);
-    --integration-faint: rgb(71 85 105 / 0.72);
-    --integration-vendor-row: rgb(255 255 255 / 0.42);
-    --integration-mark-background: hsl(210 16% 12%);
-    --integration-mark-text: white;
-}
-
-.landing-integrations-section {
-    background:
-        linear-gradient(
-            180deg,
-            var(--integration-background),
-            var(--integration-background)
-        );
-    border-color: var(--integration-border);
-    box-shadow: inset 0 1px 0 var(--integration-border);
-    color: var(--integration-text);
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-}
-
-.integration-kicker,
-.integration-type {
-    color: var(--integration-faint);
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.integration-kicker {
-    font-size: 13px;
-    letter-spacing: 0.1em;
-}
-
-.integration-heading {
-    color: var(--integration-text);
-    font-size: 40px;
-    font-weight: 600;
-    letter-spacing: 0;
-    line-height: 1.02;
-    margin-top: 20px;
-    max-width: 920px;
-}
-
-.integration-lede {
-    color: var(--integration-muted);
-    font-size: 18px;
-    line-height: 1.65;
-    margin-top: 24px;
-    max-width: 760px;
-}
-
-.integration-board {
-    display: grid;
-    gap: 16px;
-}
-
-.integration-connector {
-    background:
-        linear-gradient(
-            90deg,
-            var(--integration-surface-strong),
-            var(--integration-surface)
-        );
-    border: 1px solid var(--integration-border);
-    border-radius: 14px;
-    overflow: hidden;
-    padding: 30px 36px;
-    position: relative;
-    transition:
-        border-color 220ms ease,
-        background 220ms ease;
-}
-
-.landing-dark .integration-connector:hover {
-    background:
-        linear-gradient(
-            90deg,
-            rgb(255 255 255 / 0.09),
-            rgb(255 255 255 / 0.06)
-        );
-    border-color: rgb(255 255 255 / 0.28);
-}
-
-.landing-light .integration-connector:hover {
-    background: hsl(42 38% 97%);
-    border-color: rgb(15 23 42 / 0.24);
-}
-
-
-.integration-connector-main {
-    align-items: start;
-    display: grid;
-    gap: 24px;
-}
-
-.integration-name {
-    color: var(--integration-text);
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-top: 10px;
-}
-
-.integration-description {
-    color: var(--integration-muted);
-    font-size: 14.5px;
-    line-height: 1.6;
-    max-width: 620px;
-    padding-top: 6px;
-}
-
-.integration-vendor-row {
-    background: var(--integration-vendor-row);
-    border-bottom: 1px solid var(--integration-border);
-    border-top: 1px solid var(--integration-border);
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    margin-top: 22px;
-}
-
-.integration-vendor {
-    align-items: center;
-    border-right: 1px solid var(--integration-border);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    min-width: 0;
-    padding: 22px 8px;
-    text-align: center;
-    transition: background-color 180ms ease;
-}
-
-.integration-vendor:last-child {
-    border-right: 0;
-}
-
-.integration-vendor:hover {
-    background: rgb(15 15 15 / 0.025);
-}
-
-.landing-dark .integration-vendor:hover {
-    background: rgb(255 255 255 / 0.05);
-}
-
-.integration-vendor-mark {
-    align-items: center;
-    display: flex;
-    flex: 0 0 auto;
-    justify-content: center;
-    line-height: 1;
-}
-
-.integration-vendor-mark-logo-frame {
-    height: 42px;
-    overflow: visible;
-    width: 94px;
-}
-
-.integration-vendor-mark-fallback {
-    border-radius: 8px;
-    box-shadow:
-        0 1px 2px rgb(0 0 0 / 0.06),
-        inset 0 0 0 1px rgb(255 255 255 / 0.08);
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    height: 34px;
-    letter-spacing: -0.02em;
-    overflow: hidden;
-    padding: 5px;
-    width: 34px;
-}
-
-.integration-vendor-logo-dark-surface {
-    background: #111827;
-    border-radius: 8px;
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
-    padding: 7px 10px;
-}
-
-.integration-vendor-mark-circle {
-    border-radius: 999px;
-}
-
-.integration-vendor-mark-compact {
-    font-size: 10.5px;
-    letter-spacing: 0.02em;
-}
-
-.integration-vendor-mark-lower {
-    text-transform: lowercase;
-}
-
-.integration-vendor-logo {
-    display: block;
-    height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    width: 100%;
-}
-
-.integration-vendor-name {
-    color: var(--integration-text);
-    font-size: 12.5px;
-    font-weight: 500;
-    line-height: 1.25;
-    white-space: pre-line;
-}
-
-.integration-point-grid {
-    border-top: 1px solid var(--integration-border);
-    display: grid;
-    gap: 0;
-    margin-top: 30px;
-}
-
-.integration-point {
-    color: var(--integration-muted);
-    display: flex;
-    gap: 12px;
-    font-size: 13.5px;
-    line-height: 1.5;
-    padding: 22px 0 0;
-}
-
-.integration-point svg {
-    color: var(--integration-faint);
-}
-
-.integration-handoff-flow {
-    border-top: 1px solid var(--integration-border);
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin: 56px 0 0;
-    padding: 0;
-}
-
-.integration-handoff-row {
-    align-items: flex-start;
-    border-bottom: 1px solid var(--integration-border);
-    display: grid;
-    gap: 14px 32px;
-    grid-template-columns: 1fr;
-    padding: 24px 0;
-}
-
-.integration-handoff-row:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-}
-
-.integration-handoff-step {
-    align-items: center;
-    color: var(--integration-faint);
-    display: inline-flex;
-    flex: 0 0 auto;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-}
-
-.integration-handoff-path {
-    align-items: center;
-    color: var(--integration-muted);
-    display: flex;
-    flex-wrap: wrap;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 500;
-    gap: 10px 14px;
-    letter-spacing: 0;
-    line-height: 1.4;
-    row-gap: 6px;
-}
-
-.integration-handoff-path-icon {
-    color: var(--integration-faint);
-}
-
-.integration-handoff-source,
-.integration-handoff-dest {
-    color: var(--integration-text);
-    font-size: 1.0625rem;
-    font-weight: 600;
-    min-width: 0;
-    text-wrap: balance;
-}
-
-.integration-handoff-line {
-    background: var(--integration-border-strong);
-    flex: 0 0 auto;
-    height: 2px;
-    width: 32px;
-}
-
-.integration-handoff-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.integration-handoff-title {
-    color: var(--integration-text);
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-    line-height: 1.2;
-}
-
-.integration-handoff-description {
-    color: var(--integration-muted);
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 56ch;
-}
-
-@media (min-width: 768px) {
-    .integration-point-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .integration-point {
-        border-left: 1px solid var(--integration-border);
-        padding: 18px 22px 0;
-    }
-
-    .integration-point:first-child {
-        border-left: 0;
-        padding-left: 0;
-    }
-
-    .integration-handoff-row {
-        grid-template-columns: 52px minmax(0, 380px) minmax(0, 1fr);
-        padding: 24px 0;
-    }
-}
-
-@media (min-width: 1024px) {
-    .integration-heading {
-        font-size: 60px;
-    }
-
-    .integration-connector-main {
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    }
-
-    .integration-handoff-title {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 640px) {
-    .integration-connector {
-        padding: 22px;
-    }
-
-    .integration-vendor-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .integration-vendor {
-        border-bottom: 1px solid var(--integration-border);
-    }
-
-    .integration-vendor:nth-child(2n) {
-        border-right: 0;
-    }
-
-    .integration-vendor:last-child {
-        border-bottom: 0;
-    }
-
-    .integration-heading {
-        font-size: 40px;
-    }
-
-    .integration-name {
-        font-size: 32px;
-    }
-
-    .integration-handoff-title {
-        font-size: 20px;
-    }
-}
-
-.scroll-reveal {
-    opacity: 1;
-    transform: none;
-}
-
-.landing-page.is-reveal-ready .scroll-reveal {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0);
-}
-
-.landing-page.is-reveal-ready .scroll-reveal.is-revealed {
-    animation: scroll-reveal-fade 480ms
-        cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) both;
-}
-
-.landing-page.is-reveal-ready .scroll-reveal.is-revealing {
-    will-change: opacity, transform;
-}
-
-@keyframes scroll-reveal-fade {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 16px, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .scroll-reveal,
-    .scroll-reveal.is-revealed {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-}
-
-.resource-card {
-    background-color: rgb(255 255 255 / 0.035);
-    transition:
-        border-color 220ms ease,
-        background-color 220ms ease,
-        transform 220ms ease,
-        box-shadow 220ms ease;
-    will-change: transform;
-}
-
-.resource-card:hover {
-    background-color: rgb(255 255 255 / 0.085);
-    border-color: rgb(255 255 255 / 0.42);
-    box-shadow:
-        0 22px 56px rgb(0 0 0 / 0.5),
-        0 0 0 1px rgb(250 204 21 / 0.15) inset;
-    transform: translateY(-6px);
-}
-
-.landing-light .resource-card {
-    background-color: rgb(255 255 255);
-    border-color: rgb(15 23 42 / 0.10);
-}
-
-.landing-light .resource-card:hover {
-    background-color: hsl(42 38% 97%);
-    border-color: rgb(15 23 42 / 0.36);
-    box-shadow:
-        0 22px 56px rgb(15 23 42 / 0.16),
-        0 0 0 1px rgb(15 23 42 / 0.04) inset;
-    transform: translateY(-6px);
-}
-
-.landing-light {
-    --header-background: hsl(0 0% 100%);
-    --background: hsl(0 0% 100%);
-    --body: hsl(40 33% 96%);
-    --foreground: hsl(210 16% 12%);
-    --muted: hsl(40 24% 92%);
-    --muted-foreground: hsl(220 8% 42%);
-    --card: hsl(0 0% 100%);
-    --border: hsl(36 17% 84%);
-    --primary: hsl(45 94% 48%);
-    --primary-foreground: hsl(210 20% 10%);
-    --sidebar: hsl(40 28% 93%);
-}
-
-.landing-light,
-.landing-light .landing-site-header {
-    background: hsl(42 38% 97%);
-    color: hsl(210 16% 12%);
-}
-
-.landing-light .landing-site-header {
-    border-color: hsl(36 17% 84%);
-    box-shadow: 0 12px 36px rgb(15 23 42 / 0.06);
-}
-
-#landing-top.landing-light .landing-site-header {
-    background: hsl(42 38% 97% / 0.94);
-    border-color: hsl(36 17% 84%);
-    color: hsl(210 16% 12%);
-}
-
-.landing-light .landing-theme-toggle {
-    border-color: rgb(15 23 42 / 0.12);
-    color: rgb(15 23 42 / 0.62);
-}
-
-.landing-light .landing-theme-toggle:hover {
-    background: rgb(15 23 42 / 0.04);
-    color: rgb(15 23 42 / 0.9);
-}
-
-.landing-light .bg-\[\#050606\],
-.landing-light .bg-\[\#070808\]\/85,
-.landing-light .bg-\[\#070808\]\/80,
-.landing-light .bg-\[\#070808\]\/90,
-.landing-light .bg-\[\#070808\],
-.landing-light .bg-\[\#080a0b\],
-.landing-light .bg-\[\#090a0a\],
-.landing-light .bg-\[\#101111\],
-.landing-light .bg-\[\#111212\],
-.landing-light .bg-\[\#151616\] {
-    background-color: hsl(42 38% 97%);
-}
-
-.landing-light .text-white,
-.landing-light .hover\:text-white:hover {
-    color: hsl(210 16% 12%);
-}
-
-/* The inner app preview header is intentionally dark — keep its text light. */
-.landing-light [data-test='landing-app-header'],
-.landing-light [data-test='landing-app-header'] .text-white,
-.landing-light [data-test='landing-app-header'] .text-gray-50,
-.landing-light [data-test='landing-app-header'] .hover\:text-white:hover {
-    color: rgb(255 255 255);
-}
-
-.landing-light .text-white\/90,
-.landing-light .text-white\/88,
-.landing-light .text-white\/85,
-.landing-light .text-white\/82,
-.landing-light .text-white\/80,
-.landing-light .text-white\/65,
-.landing-light .text-white\/70,
-.landing-light .text-white\/78,
-.landing-light .text-white\/72,
-.landing-light .text-white\/68,
-.landing-light .text-white\/66,
-.landing-light .text-white\/64,
-.landing-light .text-white\/62 {
-    color: rgb(31 41 55 / 0.82);
-}
-
-.landing-light .text-white\/60,
-.landing-light .text-white\/58,
-.landing-light .text-white\/55,
-.landing-light .text-white\/54,
-.landing-light .text-white\/52,
-.landing-light .text-white\/50,
-.landing-light .text-white\/48,
-.landing-light .text-white\/46,
-.landing-light .text-white\/45,
-.landing-light .text-white\/44,
-.landing-light .text-white\/42,
-.landing-light .text-white\/40 {
-    color: rgb(75 85 99 / 0.8);
-}
-
-.landing-light .text-white\/38,
-.landing-light .text-white\/32,
-.landing-light .text-white\/30 {
-    color: rgb(107 114 128 / 0.8);
-}
-
-.landing-light .border-white\/24,
-.landing-light .border-white\/12,
-.landing-light .border-white\/10,
-.landing-light .border-white\/8,
-.landing-light .divide-white\/12 > :not([hidden]) ~ :not([hidden]) {
-    border-color: rgb(15 23 42 / 0.14);
-}
-
-.landing-light .border-white\/\[0\.06\],
-.landing-light .border-white\/\[0\.07\] {
-    border-color: rgb(15 23 42 / 0.1);
-}
-
-.landing-light .divide-white\/6 > :not([hidden]) ~ :not([hidden]) {
-    border-color: rgb(15 23 42 / 0.08);
-}
-
-.landing-light .bg-white {
-    background-color: hsl(210 16% 12%);
-    color: white;
-}
-
-.landing-light .bg-white\/45,
-.landing-light .bg-white\/12,
-.landing-light .bg-white\/10,
-.landing-light .bg-white\/\[0\.09\],
-.landing-light .bg-white\/\[0\.035\],
-.landing-light .bg-white\/\[0\.06\],
-.landing-light .bg-white\/\[0\.04\],
-.landing-light .bg-white\/\[0\.03\],
-.landing-light .bg-white\/\[0\.025\] {
-    background-color: rgb(15 23 42 / 0.08);
-}
-
-.landing-light .group:hover .group-hover\:bg-white\/\[0\.06\] {
-    background-color: rgb(15 23 42 / 0.12);
-}
-
-.landing-light .bg-black\/25 {
-    background-color: rgb(15 23 42 / 0.04);
-}
-
-.landing-light .hover\:bg-white\/90:hover {
-    background-color: rgb(15 23 42 / 0.9);
-    color: white;
-}
-
-.landing-light .shadow-\[0_28px_100px_rgba\(0\2c 0\2c 0\2c 0\.65\)\] {
-    box-shadow: 0 28px 100px rgb(15 23 42 / 0.16);
-}
-
-.landing-light .shadow-\[0_18px_50px_-20px_rgba\(0\2c 0\2c 0\2c 0\.6\)\] {
-    box-shadow: 0 18px 50px -20px rgb(15 23 42 / 0.12);
-}
-
-.landing-light [data-test='landing-preview-body'] {
-    background-color: hsl(40 33% 96%);
-    color: hsl(210 16% 12%);
-}
-
-#landing-top .landing-trips-board,
-#landing-top.landing-light .landing-trips-board {
-    background: hsl(48 22% 96%);
-    color: hsl(220 13% 13%);
-}
-
-#landing-top .landing-trips-board .landing-trips-surface,
-#landing-top .landing-trips-board .landing-trips-filterbar,
-#landing-top .landing-trips-board .landing-trips-lane,
-#landing-top .landing-trips-board .landing-trips-lane-body,
-#landing-top .landing-trips-board .landing-trips-card {
-    background: hsl(0 0% 100%) !important;
-    border-color: rgb(15 23 42 / 0.12) !important;
-    color: hsl(220 13% 13%) !important;
-}
-
-#landing-top .landing-trips-board .landing-trips-input {
-    background: hsl(0 0% 98%) !important;
-    border-color: rgb(15 23 42 / 0.12) !important;
-    color: rgb(82 82 82) !important;
-}
-
-#landing-top .landing-trips-board .landing-trips-count,
-#landing-top .landing-trips-board .landing-trips-active-tab {
-    background: hsl(220 13% 13%) !important;
-    color: hsl(0 0% 100%) !important;
-}
-
-#landing-top .landing-trips-board .landing-trips-toolbar {
-    background: linear-gradient(135deg, hsl(0 0% 100%), hsl(46 38% 98%));
-    border-color: rgb(15 23 42 / 0.1);
-}
-
-#landing-top .landing-trips-board .landing-trips-terminal,
-#landing-top .landing-trips-board .landing-trips-view-toggle {
-    border-color: rgb(15 23 42 / 0.1);
-}
-
-#landing-top .landing-trips-board .landing-trips-card-hot {
-    background:
-        linear-gradient(135deg, rgb(255 247 237 / 0.92), rgb(255 255 255 / 0.96))
-        !important;
-    border-color: rgb(245 158 11 / 0.35) !important;
-    box-shadow: 0 12px 28px -24px rgb(180 83 9 / 0.55);
-}
-
-#landing-top .landing-trips-board .landing-trips-card-ready {
-    background:
-        linear-gradient(135deg, rgb(240 253 244 / 0.82), rgb(255 255 255 / 0.96))
-        !important;
-    border-color: rgb(16 185 129 / 0.28) !important;
-}
-
-#landing-top .landing-trips-board .landing-trips-live-dot::after {
-    content: '';
-    position: absolute;
-    inset: -5px;
-    border: 1px solid rgb(16 185 129 / 0.36);
-    border-radius: 9999px;
-    animation: landing-trip-live-pulse 2.2s ease-out infinite;
-}
-
-#landing-top .landing-trips-board .landing-trips-route::before {
-    content: '';
-    position: absolute;
-    bottom: 1rem;
-    left: 0.22rem;
-    top: 0.5rem;
-    width: 1px;
-    background: linear-gradient(rgb(34 197 94 / 0.45), rgb(239 68 68 / 0.45));
-}
-
-#landing-top .landing-trips-board .landing-trips-stop-dot {
-    box-shadow: 0 0 0 3px hsl(0 0% 100%);
-}
-
-#landing-top .landing-trips-board .landing-trips-progress::before {
-    content: '';
-    display: block;
-    width: var(--trip-progress);
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, hsl(158 85% 34%), hsl(43 96% 56%));
-}
-
-#landing-top .landing-trips-board .landing-trips-action {
-    background: hsl(220 13% 13%) !important;
-    color: hsl(0 0% 100%) !important;
-}
-
-@keyframes landing-trip-live-pulse {
-    0% {
-        opacity: 0.65;
-        transform: scale(0.8);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1.9);
-    }
-}
-
-@keyframes landing-pulse-ring {
-    0% {
-        opacity: 0.55;
-        transform: scale(1);
-    }
-    80% {
-        opacity: 0;
-        transform: scale(2.4);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(2.4);
-    }
-}
-
-.landing-hero-pulse > span:first-child {
-    animation: landing-pulse-ring 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    #landing-top .landing-trips-board .landing-trips-live-dot::after {
-        animation: none;
-    }
-
-    .landing-hero-pulse > span:first-child {
-        animation: none;
-    }
-}
-
-#landing-top.landing-light .landing-hero-pill {
-    background: rgb(255 255 255 / 0.55);
-    border-color: rgb(15 23 42 / 0.12);
-    color: rgb(31 41 55 / 0.78);
-}
-
-#landing-top.landing-light .landing-hero-secondary {
-    border-color: rgb(15 23 42 / 0.12);
-    color: rgb(31 41 55 / 0.85);
-}
-
-#landing-top.landing-light .landing-hero-secondary:hover {
-    border-color: rgb(15 23 42 / 0.28);
-    color: rgb(15 23 42);
-}
-
-#landing-top.landing-light .landing-hero-secondary .font-mono {
-    color: rgb(71 85 105 / 0.7);
-}
-
-#landing-top.landing-light dl.grid.grid-cols-3 {
-    background: rgb(15 23 42 / 0.06);
-    border-color: rgb(15 23 42 / 0.10);
-}
-
-#landing-top.landing-light .landing-hero-stat {
-    background: rgb(255 255 255 / 0.85);
-}
-
-#landing-top.landing-light .landing-hero-stat dt {
-    color: rgb(71 85 105 / 0.78);
-}
-
-#landing-top.landing-light .landing-hero-stat dd {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .capability-artifact {
-    background: rgb(255 255 255 / 0.92);
-    border-color: rgb(15 23 42 / 0.10);
-    box-shadow: 0 18px 50px -22px rgb(15 23 42 / 0.18);
-}
-
-#landing-top.landing-light .capability-artifact .border-white\/8 {
-    border-color: rgb(15 23 42 / 0.08);
-}
-
-#landing-top.landing-light .capability-artifact .bg-white\/\[0\.03\] {
-    background: rgb(15 23 42 / 0.03);
-}
-
-#landing-top.landing-light .capability-artifact .divide-white\/6 > * + * {
-    border-color: rgb(15 23 42 / 0.06);
-}
-
-#landing-top.landing-light .capability-artifact .text-white\/82,
-#landing-top.landing-light .capability-artifact .text-white {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .capability-artifact .text-white\/72 {
-    color: rgb(31 41 55 / 0.78);
-}
-
-#landing-top.landing-light .capability-artifact .text-white\/55,
-#landing-top.landing-light .capability-artifact .text-white\/60 {
-    color: rgb(71 85 105 / 0.78);
-}
-
-#landing-top.landing-light .capability-artifact .text-white\/45 {
-    color: rgb(71 85 105 / 0.55);
-}
-
-.integration-connector-mark.integration-mark-qb,
-.integration-connector-mark.integration-mark-samsara {
-    background: transparent !important;
-    color: inherit !important;
-    overflow: hidden;
-}
-
-.integration-connector-mark.integration-mark-qb {
-    padding: 0;
-}
-
-/* Inset: wide wordmark+mark asset must sit inside the circular clip (no corner/bottom shearing). */
-.integration-connector-mark.integration-mark-samsara {
-    box-sizing: border-box;
-    padding: 0.5rem;
-}
-
-.integration-mark-img {
-    display: block;
-    height: 100%;
-    object-fit: contain;
-    width: 100%;
-}
-
-.partner-roadmap {
-    border-top: 1px solid var(--integration-border);
-    padding-top: 48px;
-}
-
-.partner-roadmap-head {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-width: 640px;
-}
-
-.partner-roadmap-kicker {
-    color: var(--integration-faint);
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.partner-roadmap-title {
-    color: var(--integration-text);
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-}
-
-.partner-roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 28px;
-}
-
-@media (min-width: 768px) {
-    .partner-roadmap-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (min-width: 1024px) {
-    .partner-roadmap-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-}
-
-.partner-roadmap-tile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 14px 16px;
-    border: 1px solid var(--integration-border);
-    border-radius: 14px;
-    background: var(--integration-surface);
-    transition:
-        border-color 0.2s ease,
-        background-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.partner-roadmap-tile:hover {
-    border-color: var(--integration-border-strong);
-    transform: translateY(-1px);
-}
-
-.partner-roadmap-name {
-    color: var(--integration-text);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-}
-
-.partner-roadmap-status {
-    color: var(--integration-faint);
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-.partner-roadmap-status-live {
-    color: rgb(52 211 153);
-}
-
-.partner-roadmap-request {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 28px;
-    padding: 10px 18px;
-    border-radius: 999px;
-    border: 1px solid var(--integration-border);
-    color: var(--integration-text);
-    font-size: 13px;
-    font-weight: 500;
-    transition:
-        border-color 0.2s ease,
-        background-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.partner-roadmap-request:hover {
-    border-color: var(--integration-border-strong);
-    transform: translateY(-1px);
-}
-
-.partner-roadmap-request-arrow {
-    transition: transform 0.2s ease;
-}
-
-.partner-roadmap-request:hover .partner-roadmap-request-arrow {
-    transform: translateX(2px);
-}
-
-.testimonial-card {
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background-color 0.25s ease;
-}
-
-.testimonial-card:hover {
-    border-color: rgb(255 255 255 / 0.18);
-    transform: translateY(-2px);
-}
-
-.testimonial-quote-mark {
-    font-family: 'Cabinet Grotesk', 'Satoshi', ui-sans-serif, system-ui, sans-serif;
-    font-size: 56px;
-    font-weight: 600;
-    line-height: 0.6;
-    color: rgb(255 255 255 / 0.18);
-    letter-spacing: -0.04em;
-}
-
-.testimonial-avatar {
-    background: linear-gradient(140deg, rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.04));
-    border: 1px solid rgb(255 255 255 / 0.12);
-    color: rgb(255 255 255 / 0.85);
-}
-
-#landing-top.landing-light .testimonial-card {
-    border-color: rgb(15 23 42 / 0.10);
-    background: rgb(255 255 255 / 0.85);
-}
-
-#landing-top.landing-light .testimonial-card:hover {
-    border-color: rgb(15 23 42 / 0.18);
-}
-
-#landing-top.landing-light .testimonial-card .border-white\/8 {
-    border-color: rgb(15 23 42 / 0.08);
-}
-
-#landing-top.landing-light .testimonial-card blockquote {
-    color: hsl(210 16% 18%);
-}
-
-#landing-top.landing-light .testimonial-card .text-white {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .testimonial-card .text-white\/55 {
-    color: rgb(71 85 105 / 0.85);
-}
-
-#landing-top.landing-light .testimonial-quote-mark {
-    color: rgb(15 23 42 / 0.18);
-}
-
-#landing-top.landing-light .testimonial-avatar {
-    background: linear-gradient(140deg, rgb(15 23 42 / 0.10), rgb(15 23 42 / 0.04));
-    border-color: rgb(15 23 42 / 0.16);
-    color: rgb(15 23 42 / 0.85);
-}
-
-.demo-form .grid {
-    box-shadow: 0 24px 60px -28px rgb(0 0 0 / 0.6);
-}
-
-.demo-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.demo-field-label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.55);
-}
-
-.demo-field-input {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: 1px solid rgb(255 255 255 / 0.10);
-    background: rgb(255 255 255 / 0.04);
-    color: rgb(255 255 255 / 0.92);
-    font-size: 14px;
-    line-height: 1.4;
-    transition:
-        border-color 0.2s ease,
-        background-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.demo-field-input::placeholder {
-    color: rgb(255 255 255 / 0.32);
-}
-
-.demo-field-input:focus {
-    outline: none;
-    border-color: rgb(255 255 255 / 0.32);
-    background: rgb(255 255 255 / 0.06);
-    box-shadow: 0 0 0 3px rgb(255 255 255 / 0.06);
-}
-
-.demo-field-textarea {
-    resize: vertical;
-    min-height: 96px;
-    line-height: 1.55;
-}
-
-.demo-form-submit:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.demo-form-success {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 6px 0;
-}
-
-.demo-form-success-icon {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    background: rgb(52 211 153 / 0.14);
-    color: rgb(52 211 153);
-    border: 1px solid rgb(52 211 153 / 0.32);
-}
-
-.demo-form-success-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: rgb(255 255 255 / 0.92);
-}
-
-.demo-form-success-sub {
-    margin-top: 4px;
-    font-size: 13px;
-    color: rgb(255 255 255 / 0.55);
-}
-
-#landing-top.landing-light .demo-form .grid {
-    background: rgb(255 255 255 / 0.85);
-    border-color: rgb(15 23 42 / 0.10);
-    box-shadow: 0 24px 60px -28px rgb(15 23 42 / 0.18);
-}
-
-#landing-top.landing-light .demo-field-label {
-    color: rgb(71 85 105 / 0.85);
-}
-
-#landing-top.landing-light .demo-field-input {
-    background: rgb(255 255 255 / 0.95);
-    border-color: rgb(15 23 42 / 0.12);
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .demo-field-input::placeholder {
-    color: rgb(71 85 105 / 0.55);
-}
-
-#landing-top.landing-light .demo-field-input:focus {
-    border-color: rgb(15 23 42 / 0.32);
-    background: rgb(255 255 255);
-    box-shadow: 0 0 0 3px rgb(15 23 42 / 0.05);
-}
-
-#landing-top.landing-light .demo-form-success-title {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .demo-form-success-sub {
-    color: rgb(71 85 105 / 0.85);
-}
-
-.landing-footer {
-    position: relative;
-    z-index: 1;
-}
-
-#landing-top.landing-light .landing-footer {
-    background: hsl(42 38% 97%);
-    border-color: rgb(15 23 42 / 0.10);
-    color: hsl(210 16% 16%);
-}
-
-#landing-top.landing-light .landing-footer .text-white\/72 {
-    color: rgb(31 41 55 / 0.78);
-}
-
-#landing-top.landing-light .landing-footer .text-white\/55 {
-    color: rgb(71 85 105 / 0.78);
-}
-
-#landing-top.landing-light .landing-footer .text-white\/45 {
-    color: rgb(71 85 105 / 0.65);
-}
-
-#landing-top.landing-light .landing-footer .border-white\/8 {
-    border-color: rgb(15 23 42 / 0.08);
-}
-
-.landing-hero-card-glow {
-    background: radial-gradient(
-        80% 60% at 50% 50%,
-        rgb(255 255 255 / 0.07) 0%,
-        rgb(5 6 6 / 0) 65%
-    );
-    filter: blur(28px);
-}
-
-.landing-hero-card-stat {
-    min-width: 0;
-    background: rgb(7 8 8 / 0.7);
-    padding: 14px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.landing-hero-card-stat-label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    /* Hero 3-col grid: nowrap + slight size/track reduction so all three labels fit */
-    font-size: 9.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.42);
-    white-space: nowrap;
-}
-
-.landing-hero-card-stat-value {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: rgb(255 255 255);
-}
-
-.landing-hero-card-row {
-    display: grid;
-    grid-template-columns: 8px auto 1fr auto;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 18px;
-}
-
-.landing-hero-card-row-tone {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-}
-
-.landing-hero-card-dot > span:first-child {
-    animation: landing-pulse-ring 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .landing-hero-card-dot > span:first-child {
-        animation: none;
-    }
-}
-
-#landing-top.landing-light .landing-hero-card-inner {
-    background: rgb(255 255 255 / 0.92);
-    border-color: rgb(15 23 42 / 0.10);
-    box-shadow: 0 28px 70px -28px rgb(15 23 42 / 0.22);
-}
-
-#landing-top.landing-light .landing-hero-card-inner .border-white\/8,
-#landing-top.landing-light .landing-hero-card-inner .border-t {
-    border-color: rgb(15 23 42 / 0.08);
-}
-
-#landing-top.landing-light .landing-hero-card-inner .bg-white\/\[0\.04\],
-#landing-top.landing-light .landing-hero-card-inner .bg-white\/\[0\.025\] {
-    background: rgb(15 23 42 / 0.04);
-}
-
-#landing-top.landing-light .landing-hero-card-inner .bg-white\/8 {
-    background: rgb(15 23 42 / 0.10);
-}
-
-#landing-top.landing-light .landing-hero-card-stat {
-    background: rgb(255 255 255 / 0.95);
-}
-
-#landing-top.landing-light .landing-hero-card-stat-label {
-    color: rgb(71 85 105 / 0.72);
-}
-
-#landing-top.landing-light .landing-hero-card-stat-value,
-#landing-top.landing-light .landing-hero-card-row .text-white\/85 {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .landing-hero-card-row .text-white\/55,
-#landing-top.landing-light .landing-hero-card-inner .text-white\/55 {
-    color: rgb(71 85 105 / 0.78);
-}
-
-#landing-top.landing-light .landing-hero-card-inner .text-white\/45,
-#landing-top.landing-light .landing-hero-card-inner .text-white\/35 {
-    color: rgb(71 85 105 / 0.55);
-}
-
-@keyframes landing-tone-flicker {
-    0%, 100% {
-        opacity: 1;
-        filter: brightness(1);
-    }
-    50% {
-        opacity: 0.55;
-        filter: brightness(1.4);
-    }
-}
-
-.capability-tone-dot.bg-emerald-400 {
-    animation: landing-tone-flicker 3.2s ease-in-out infinite;
-}
-
-.capability-tone-dot.bg-amber-400 {
-    animation: landing-tone-flicker 2.4s ease-in-out infinite;
-    animation-delay: 0.4s;
-}
-
-.capability-tone-dot.bg-rose-400 {
-    animation: landing-tone-flicker 2.8s ease-in-out infinite;
-    animation-delay: 0.7s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .capability-tone-dot {
-        animation: none !important;
-    }
-}
-
-.preview-captions {
-    margin-top: 28px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    max-width: 1120px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (max-width: 720px) {
-    .preview-captions {
-        grid-template-columns: 1fr;
-    }
-}
-
-.preview-caption {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 18px 20px;
-    border-radius: 14px;
-    border: 1px solid rgb(255 255 255 / 0.08);
-    background: rgb(255 255 255 / 0.025);
-}
-
-.preview-caption-tag {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.45);
-}
-
-.preview-caption-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(255 255 255 / 0.92);
-    letter-spacing: -0.005em;
-}
-
-.preview-caption-body {
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgb(255 255 255 / 0.55);
-}
-
-#landing-top.landing-light .preview-caption {
-    background: rgb(255 255 255 / 0.85);
-    border-color: rgb(15 23 42 / 0.10);
-}
-
-#landing-top.landing-light .preview-caption-tag {
-    color: rgb(71 85 105 / 0.65);
-}
-
-#landing-top.landing-light .preview-caption-title {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .preview-caption-body {
-    color: rgb(31 41 55 / 0.78);
-}
-
-.integration-sync {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 8px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--integration-border);
-    background: var(--integration-surface);
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--integration-faint);
-}
-
-.integration-sync-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: rgb(52 211 153);
-    box-shadow: 0 0 0 3px rgb(52 211 153 / 0.18);
-    animation: landing-tone-flicker 2.6s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .integration-sync-dot {
-        animation: none;
-    }
-}
-
-.landing-testimonials-grid {
-    align-items: stretch;
-}
-
-.testimonial-lead {
-    background: linear-gradient(
-        140deg,
-        rgb(255 255 255 / 0.05) 0%,
-        rgb(255 255 255 / 0.02) 100%
-    );
-    border-color: rgb(255 255 255 / 0.16);
-    padding: 36px;
-}
-
-.testimonial-lead blockquote {
-    font-size: 22px;
-    line-height: 1.45;
-    letter-spacing: -0.005em;
-    color: rgb(255 255 255 / 0.92);
-}
-
-.testimonial-lead .testimonial-quote-mark {
-    font-size: 88px;
-}
-
-.testimonial-outcome {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    border: 1px solid rgb(255 255 255 / 0.10);
-    background: rgb(255 255 255 / 0.04);
-}
-
-.testimonial-outcome-value {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgb(255 255 255 / 0.92);
-    letter-spacing: -0.01em;
-}
-
-.testimonial-outcome-label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgb(255 255 255 / 0.5);
-}
-
-#landing-top.landing-light .testimonial-lead {
-    background: rgb(255 255 255 / 0.92);
-    border-color: rgb(15 23 42 / 0.12);
-}
-
-#landing-top.landing-light .testimonial-outcome {
-    background: rgb(15 23 42 / 0.04);
-    border-color: rgb(15 23 42 / 0.10);
-}
-
-#landing-top.landing-light .testimonial-outcome-value {
-    color: hsl(210 16% 12%);
-}
-
-#landing-top.landing-light .testimonial-outcome-label {
-    color: rgb(71 85 105 / 0.78);
-}
-
-</style>

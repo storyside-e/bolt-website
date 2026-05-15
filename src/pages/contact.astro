@@ -1,0 +1,86 @@
+---
+import MarketingChrome from "../layouts/MarketingChrome.astro";
+import ScheduleDemoIsland from "../components/marketing/ScheduleDemoIsland.vue";
+import contact from "../content/home/contact.json";
+
+const title = "Contact · Bolt TMS";
+const description =
+    "Reach Bolt sales and support by phone or email, or schedule a demo with our team.";
+
+const scheduleContactButtonClass =
+    "marketing-secondary-cta inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]";
+---
+
+<MarketingChrome title={title} description={description}>
+    <section
+        class="landing-section-hero relative z-10 isolate -mx-5 overflow-hidden px-5 py-10 sm:-mx-8 sm:px-8 sm:py-12 lg:-mx-12 lg:px-12 xl:-mx-16 xl:px-16"
+    >
+        <div
+            class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.14),rgba(255,255,255,0.05)_28%,rgba(5,6,6,0)_62%)]"
+            aria-hidden="true"
+        />
+        <article class="relative max-w-2xl">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
+                Contact
+            </p>
+            <h1 class="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                Talk with Bolt
+            </h1>
+            <p class="mt-5 text-[16px] leading-relaxed text-white/55">
+                Prefer the phone? Need support? Want a walkthrough first? Pick the path that
+                fits—we’ll take it from there.
+            </p>
+
+            <div class="mt-10 grid gap-6 sm:grid-cols-2">
+                <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
+                    <h2 class="text-[13px] font-semibold uppercase tracking-wide text-white/55">
+                        {contact.sales.label}
+                    </h2>
+                    <a
+                        href={contact.sales.phoneHref}
+                        class="mt-3 block text-lg font-semibold tabular-nums text-white transition hover:text-white"
+                    >
+                        {contact.sales.phoneDisplay}
+                    </a>
+                    <a
+                        href={contact.sales.emailHref}
+                        class="mt-3 block break-all text-[14px] font-medium text-white/70 underline transition hover:text-white"
+                    >
+                        {contact.sales.emailDisplay}
+                    </a>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
+                    <h2 class="text-[13px] font-semibold uppercase tracking-wide text-white/55">
+                        {contact.support.label}
+                    </h2>
+                    <a
+                        href={contact.support.phoneHref}
+                        class="mt-3 block text-lg font-semibold tabular-nums text-white transition hover:text-white"
+                    >
+                        {contact.support.phoneDisplay}
+                    </a>
+                    <a
+                        href={contact.support.emailHref}
+                        class="mt-3 block break-all text-[14px] font-medium text-white/70 underline transition hover:text-white"
+                    >
+                        {contact.support.emailDisplay}
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-10 flex flex-wrap items-center gap-4">
+                <ScheduleDemoIsland
+                    client:load
+                    theme="light"
+                    abbreviateOnNarrow={false}
+                    buttonClass={scheduleContactButtonClass}
+                />
+            </div>
+
+            <p class="mt-10 text-[14px] leading-relaxed text-white/55">
+                For urgent production issues, start with Support. For pricing, a field test, and
+                onboarding fit, Sales is the fastest line.
+            </p>
+        </article>
+    </section>
+</MarketingChrome>

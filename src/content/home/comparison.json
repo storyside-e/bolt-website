@@ -1,0 +1,74 @@
+{
+  "title": "Three ways teams buy TMS software",
+  "subtitle": "Same job—moving freight—three familiar shapes. Here’s the tradeoff buyers feel in the room, without picking on any one vendor.",
+  "columns": [
+    {
+      "variant": "bolt",
+      "badge": "90-day field test · Month-to-month after · No long-term contract",
+      "eyebrow": "Bolt",
+      "descriptor": "Cloud-native · self-serve first",
+      "name": "Run it like software, not a project",
+      "bullets": [
+        {
+          "type": "pro",
+          "text": "90-day field test on your lanes—prove it with real dispatch, safety, and billing."
+        },
+        {
+          "type": "pro",
+          "text": "True multi-tenant SaaS: a tab or your phone. No VPC, private hosting, or “call IT before I can log in.”"
+        },
+        {
+          "type": "pro",
+          "text": "Onboarding in days—not a quarter-long implementation program."
+        },
+        {
+          "type": "pro",
+          "text": "Pricing on the page: per active truck/driver, a clear monthly floor, optional brokerage add-on."
+        }
+      ],
+      "pricingLine": "$20 / active truck or driver (greater of the two) · $100/mo minimum · +$200/mo brokerage add-on"
+    },
+    {
+      "variant": "legacy",
+      "eyebrow": "Legacy enterprise",
+      "descriptor": "Hosted stacks & long services tail",
+      "name": "The private-footprint world",
+      "bullets": [
+        {
+          "type": "con",
+          "text": "Organized around your network: VPNs, private links, data centers—or installs that don’t feel like modern SaaS."
+        },
+        {
+          "type": "con",
+          "text": "Professional services and phased rollouts before you’re living in it end-to-end."
+        },
+        {
+          "type": "con",
+          "text": "Economics that reward scale, change orders, and long buying cycles—not small-team speed."
+        }
+      ],
+      "pricingLine": "Implementation + services are usually the real line item; list price rarely tells the story."
+    },
+    {
+      "variant": "modern",
+      "eyebrow": "Newer cloud suites",
+      "descriptor": "Enterprise-grade, quote-led",
+      "name": "Serious cloud, bigger appetite",
+      "bullets": [
+        {
+          "type": "con",
+          "text": "Real cloud—but often tuned for later-stage ops and larger monthly commits."
+        },
+        {
+          "type": "con",
+          "text": "Broader products can mean more training and services before the first clean dispatch week."
+        },
+        {
+          "type": "con",
+          "text": "All-in pricing is still uncommon—you’ll usually talk to sales before you know run-rate."
+        }
+      ],
+      "pricingLine": "Often mid-to-high four figures per month before add-ons and services (varies widely)."
+    }
+  ]
+}

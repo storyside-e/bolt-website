@@ -3,6 +3,7 @@ import { file } from 'astro/loaders'
 
 import {
     capabilitiesSchema,
+    comparisonSchema,
     demoSchema,
     footerSchema,
     heroSchema,
@@ -55,6 +56,13 @@ const demo = defineCollection({
     schema: demoSchema,
 })
 
+const comparison = defineCollection({
+    loader: file('src/content/home/comparison.json', {
+        parser: wrapSingleton('comparison'),
+    }),
+    schema: comparisonSchema,
+})
+
 export const collections = {
     hero,
     capabilities,
@@ -62,4 +70,5 @@ export const collections = {
     testimonials,
     footer,
     demo,
+    comparison,
 }

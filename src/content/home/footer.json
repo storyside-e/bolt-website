@@ -3,36 +3,27 @@
     {
       "heading": "Product",
       "links": [
-        { "label": "Dispatch", "href": "#features" },
-        { "label": "Freight", "href": "#features" },
-        { "label": "Money", "href": "#features" },
-        { "label": "Integrations", "href": "#integrations" }
+        { "label": "What we built", "href": "/#features" },
+        { "label": "Integrations", "href": "/#integrations" },
+        { "label": "Pricing", "href": "/pricing" }
       ]
     },
     {
       "heading": "Company",
-      "links": [
-        { "label": "About", "href": "#" },
-        { "label": "Careers", "href": "#" },
-        { "label": "Newsroom", "href": "#" },
-        { "label": "Contact", "href": "mailto:hello@bolttms.com" }
-      ]
+      "links": [{ "label": "Contact", "href": "/contact" }]
     },
     {
       "heading": "Resources",
       "links": [
-        { "label": "Operator guides", "href": "#" },
-        { "label": "Release notes", "href": "#" },
-        { "label": "Status", "href": "#" }
+        { "label": "Pricing", "href": "/pricing" },
+        { "label": "Start your field test", "href": "https://app.bolttms.com/register?step=registration" }
       ]
     },
     {
       "heading": "Legal",
       "links": [
-        { "label": "Privacy", "href": "#" },
-        { "label": "Terms", "href": "#" },
-        { "label": "Security", "href": "#" },
-        { "label": "DPA", "href": "#" }
+        { "label": "Privacy", "href": "/privacy" },
+        { "label": "Terms", "href": "/terms" }
       ]
     }
   ]

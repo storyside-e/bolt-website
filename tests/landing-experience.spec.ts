@@ -24,7 +24,9 @@ describe("LandingExperience", () => {
     expect(wrapper.text()).toContain("Invoice-ready freight, posted to your books.");
     expect(wrapper.text()).toContain("Money flows tied to the haul that earned them.");
     expect(wrapper.text()).toContain("Bolt Driver App");
-    expect(wrapper.text()).toContain("Uber Freight");
+    expect(wrapper.text()).toContain("Why Bolt?");
+    expect(wrapper.text()).toContain("Three ways teams buy TMS software");
+    expect(wrapper.text()).toContain("support@boltsystem.com");
     expect(wrapper.text()).toContain("TriumphPay");
     expect(wrapper.text()).not.toContain(
       "QuickBooks Online (accounting) and Samsara (telematics) are among the first native connectors"

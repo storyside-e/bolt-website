@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "dev:clean": "rm -rf node_modules/.vite && astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

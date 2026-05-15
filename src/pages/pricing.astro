@@ -1,0 +1,218 @@
+---
+import MarketingChrome from "../layouts/MarketingChrome.astro";
+import PricingEstimator from "../components/marketing/PricingEstimator.vue";
+import ScheduleDemoIsland from "../components/marketing/ScheduleDemoIsland.vue";
+import TmsComparisonSection from "../components/landing/TmsComparisonSection.vue";
+import pricing from "../content/home/pricing.json";
+import comparison from "../content/home/comparison.json";
+
+const { meta, hero, rates, trialNote, faq, disclaimer } = pricing;
+
+const withBase = (path: string) => {
+    const base = import.meta.env.BASE_URL || "/";
+    const root = base.replace(/\/$/, "");
+    const p = path.startsWith("/") ? path : `/${path}`;
+    return root ? `${root}${p}` : p;
+};
+
+// Theme-aware via .marketing-secondary-cta in landing-page.css.
+const scheduleHeroButtonClass =
+    "marketing-secondary-cta inline-flex h-11 w-full min-w-0 items-center justify-center rounded-full border px-6 text-[14px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] sm:w-auto";
+
+const scheduleQuietButtonClass =
+    "marketing-secondary-cta inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]";
+---
+
+<MarketingChrome title={meta.title} description={meta.description}>
+    <section
+        class="pricing-hero relative z-10 isolate -mx-5 overflow-hidden px-5 py-10 sm:-mx-8 sm:px-8 sm:py-12 lg:-mx-12 lg:px-12 xl:-mx-16 xl:px-16"
+    >
+        <div
+            class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.14),rgba(255,255,255,0.05)_28%,rgba(5,6,6,0)_62%)]"
+            aria-hidden="true"
+        />
+        <div
+            class="pointer-events-none absolute inset-x-0 top-16 -z-10 mx-auto h-[280px] max-w-3xl rounded-full bg-white/[0.035] blur-3xl"
+            aria-hidden="true"
+        />
+
+        <div class="relative grid gap-x-12 gap-y-10 lg:grid-cols-12 lg:items-start">
+            <article class="relative lg:col-span-7">
+                <span
+                    class="landing-hero-pill mb-7 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-white/65 backdrop-blur"
+                >
+                    <span class="landing-hero-pulse relative flex size-2">
+                        <span class="absolute inset-0 rounded-full bg-emerald-400/45" aria-hidden="true"></span>
+                        <span class="relative size-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+                    </span>
+                    Pricing
+                </span>
+                <h1
+                    class="max-w-[760px] text-balance font-semibold leading-[0.96] tracking-tight text-white"
+                    style="font-size: clamp(2.35rem, 4vw, 3.5rem)"
+                >
+                    {hero.headline}
+                </h1>
+                <p class="mt-6 max-w-xl text-pretty text-[16px] leading-relaxed text-white/55 sm:text-[18px]">
+                    {hero.subhead}
+                </p>
+                <p
+                    class="mt-6 max-w-xl border-l-2 border-[#facc15]/55 pl-5 text-[15px] leading-relaxed text-white/62 sm:text-[16px]"
+                >
+                    {hero.contrastLine}
+                </p>
+
+                <div
+                    class="mt-8 flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-start"
+                >
+                    <a
+                        href="https://app.bolttms.com/register?step=registration"
+                        class="landing-cta inline-flex h-11 w-full items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] sm:w-auto"
+                    >
+                        Start your field test
+                    </a>
+                    <div class="w-full sm:w-auto">
+                        <ScheduleDemoIsland
+                            client:load
+                            theme="light"
+                            abbreviateOnNarrow={false}
+                            buttonClass={scheduleHeroButtonClass}
+                        />
+                    </div>
+                    <a
+                        href={withBase("/contact")}
+                        class="marketing-secondary-cta inline-flex h-11 w-full items-center justify-center rounded-full border px-6 text-[14px] font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15] sm:w-auto"
+                    >
+                        Contact sales
+                    </a>
+                </div>
+                <p class="mt-4 max-w-lg text-[13px] leading-relaxed text-white/45">{trialNote}</p>
+
+                <dl class="mt-10 grid w-full max-w-xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left backdrop-blur sm:max-w-2xl">
+                    <div class="pricing-hero-stat">
+                        <dt class="pricing-hero-stat-label">Per active unit</dt>
+                        <dd class="pricing-hero-stat-value">{rates.perUnitAmount}<span class="pricing-hero-stat-suffix">/mo</span></dd>
+                    </div>
+                    <div class="pricing-hero-stat">
+                        <dt class="pricing-hero-stat-label">Monthly minimum</dt>
+                        <dd class="pricing-hero-stat-value">{rates.minimumAmount}<span class="pricing-hero-stat-suffix">/mo</span></dd>
+                    </div>
+                    <div class="pricing-hero-stat">
+                        <dt class="pricing-hero-stat-label">Brokerage add-on</dt>
+                        <dd class="pricing-hero-stat-value">{rates.brokerageAmount}<span class="pricing-hero-stat-suffix">/mo</span></dd>
+                    </div>
+                </dl>
+            </article>
+
+            <aside class="relative lg:col-span-5">
+                <div class="pricing-estimator-shell">
+                    <div class="pricing-estimator-tag">
+                        <span class="pricing-estimator-tag-dot" aria-hidden="true"></span>
+                        Live estimator
+                    </div>
+                    <PricingEstimator client:load />
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section
+        class="landing-section relative z-10 mt-12 border-t border-white/10 pt-12"
+        aria-labelledby="pricing-billing-heading"
+    >
+        <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/40">
+            How billing works
+        </p>
+        <h2 id="pricing-billing-heading" class="mt-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+            Three numbers. That’s the whole bill.
+        </h2>
+        <p class="mt-6 max-w-2xl text-[17px] leading-8 text-white/64">
+            We don’t hide line items, we don’t add a per-seat tax, and the price you saw above is the price you’ll pay.
+        </p>
+
+        <div class="pricing-rate-grid mt-10">
+            <article class="pricing-rate-card">
+                <div class="pricing-rate-card-head">
+                    <span class="pricing-rate-card-eyebrow">Per active unit</span>
+                    <span class="pricing-rate-card-amount">
+                        {rates.perUnitAmount}<span class="pricing-rate-card-amount-suffix">/unit · mo</span>
+                    </span>
+                </div>
+                <p class="pricing-rate-card-body">{rates.perUnitDetail}</p>
+            </article>
+            <article class="pricing-rate-card">
+                <div class="pricing-rate-card-head">
+                    <span class="pricing-rate-card-eyebrow">Monthly minimum</span>
+                    <span class="pricing-rate-card-amount">
+                        {rates.minimumAmount}<span class="pricing-rate-card-amount-suffix">/mo</span>
+                    </span>
+                </div>
+                <p class="pricing-rate-card-body">
+                    Smallest carriers still get the full product. The minimum kicks in below five active units.
+                </p>
+            </article>
+            <article class="pricing-rate-card">
+                <div class="pricing-rate-card-head">
+                    <span class="pricing-rate-card-eyebrow">Brokerage add-on</span>
+                    <span class="pricing-rate-card-amount">
+                        {rates.brokerageAmount}<span class="pricing-rate-card-amount-suffix">{rates.brokerageSuffix}</span>
+                    </span>
+                </div>
+                <p class="pricing-rate-card-body">{rates.brokerageDescription}</p>
+            </article>
+        </div>
+
+        <div class="landing-section-cta mt-12">
+            <div class="landing-section-cta-text">
+                <p class="landing-section-cta-eyebrow">Ready when you are</p>
+                <p class="landing-section-cta-headline">No quote, no procurement cycle. Just sign up.</p>
+            </div>
+            <div class="landing-section-cta-actions">
+                <a
+                    href="https://app.bolttms.com/register?step=registration"
+                    class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
+                >
+                    Start your field test
+                </a>
+                <ScheduleDemoIsland
+                    client:load
+                    theme="light"
+                    abbreviateOnNarrow={false}
+                    buttonClass={scheduleQuietButtonClass}
+                />
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="relative z-10 mt-12 border-t border-white/10 pt-12"
+        aria-label="How Bolt compares"
+    >
+        <TmsComparisonSection client:visible content={comparison} embedded />
+    </section>
+
+    <section
+        class="landing-section relative z-10 mt-12 border-t border-white/10 pt-12"
+        aria-labelledby="pricing-faq"
+    >
+        <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/40">
+            FAQ
+        </p>
+        <h2 id="pricing-faq" class="mt-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+            Common questions
+        </h2>
+        <div class="pricing-surface mt-8 overflow-hidden rounded-xl border border-white/10">
+            <ul class="divide-y divide-white/10">
+                {
+                    faq.map((item) => (
+                        <li class="px-6 py-6 sm:px-8">
+                            <p class="font-semibold text-white">{item.q}</p>
+                            <p class="mt-2 text-[14px] leading-relaxed text-white/60">{item.a}</p>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+        <p class="mt-10 text-[12px] leading-relaxed text-white/45">{disclaimer}</p>
+    </section>
+</MarketingChrome>

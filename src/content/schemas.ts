@@ -115,6 +115,77 @@ export const footerSchema = z.object({
     columns: z.array(footerColumnSchema).min(1),
 })
 
+const siteContactChannelSchema = z.object({
+    label: z.string().min(1),
+    phoneDisplay: z.string().min(1),
+    phoneHref: z.string().min(1),
+    emailDisplay: z.string().min(1),
+    emailHref: z.string().min(1),
+})
+
+export const siteContactSchema = z.object({
+    sales: siteContactChannelSchema,
+    support: siteContactChannelSchema,
+})
+
+export const pricingPageFaqSchema = z.object({
+    q: z.string().min(1),
+    a: z.string().min(1),
+})
+
+export const pricingPageSchema = z.object({
+    meta: z.object({
+        title: z.string().min(1),
+        description: z.string().min(1),
+    }),
+    hero: z.object({
+        headline: z.string().min(1),
+        subhead: z.string().min(1),
+        contrastLine: z.string().min(1),
+    }),
+    rates: z.object({
+        perUnitLabel: z.string().min(1),
+        perUnitDetail: z.string().min(1),
+        perUnitAmount: z.string().min(1),
+        minimumLabel: z.string().min(1),
+        minimumAmount: z.string().min(1),
+        brokerageTitle: z.string().min(1),
+        brokerageDescription: z.string().min(1),
+        brokerageAmount: z.string().min(1),
+        brokerageSuffix: z.string().min(1),
+    }),
+    estimator: z.object({
+        trucksLabel: z.string().min(1),
+        driversLabel: z.string().min(1),
+        brokerageToggle: z.string().min(1),
+    }),
+    trialNote: z.string().min(1),
+    faq: z.array(pricingPageFaqSchema).min(1),
+    disclaimer: z.string().min(1),
+})
+
 export const demoSchema = z.object({
     fleetSizeOptions: z.array(z.string().min(1)).min(1),
+})
+
+export const comparisonBulletSchema = z.object({
+    type: z.enum(['pro', 'con']),
+    text: z.string().min(1),
+})
+
+export const comparisonCardSchema = z.object({
+    variant: z.enum(['bolt', 'legacy', 'modern']),
+    /** Short promo line (e.g. field test) — shown prominently on the card */
+    badge: z.string().optional(),
+    eyebrow: z.string().min(1),
+    descriptor: z.string().min(1),
+    name: z.string().min(1),
+    bullets: z.array(comparisonBulletSchema).min(2),
+    pricingLine: z.string().min(1),
+})
+
+export const comparisonSchema = z.object({
+    title: z.string().min(1),
+    subtitle: z.string().min(1),
+    columns: z.array(comparisonCardSchema).length(3),
 })

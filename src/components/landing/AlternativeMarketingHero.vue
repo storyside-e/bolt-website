@@ -83,7 +83,7 @@ const features = [
                     href="https://app.bolttms.com/register?step=registration"
                     class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                 >
-                    Start your field test
+                    Try Bolt free
                 </a>
                 <button
                     type="button"

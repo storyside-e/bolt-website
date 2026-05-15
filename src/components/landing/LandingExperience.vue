@@ -41,7 +41,7 @@
                                 href="https://app.bolttms.com/register?step=registration"
                                 class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                             >
-                                Start your field test
+                                Try Bolt free
                             </a>
                             <a
                                 href="#preview"
@@ -3289,7 +3289,7 @@
                                 href="https://app.bolttms.com/register?step=registration"
                                 class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                             >
-                                Start your field test
+                                Try Bolt free
                             </a>
                             <button
                                 type="button"
@@ -3527,7 +3527,7 @@
                                 href="https://app.bolttms.com/register?step=registration"
                                 class="landing-section-cta-secondary inline-flex h-11 items-center justify-center rounded-full border border-white/14 px-5 text-[14px] font-medium text-white/72 transition hover:border-white/28 hover:text-white"
                             >
-                                Start your field test
+                                Try Bolt free
                             </a>
                         </div>
                     </div>
@@ -3549,7 +3549,7 @@
                                 href="https://app.bolttms.com/register?step=registration"
                                 class="landing-cta inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                             >
-                                Start your field test
+                                Try Bolt free
                             </a>
                             <button
                                 type="button"
@@ -3680,7 +3680,7 @@
                             href="https://app.bolttms.com/register?step=registration"
                             class="landing-cta inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-[14px] font-medium text-black shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#facc15]"
                         >
-                            Start your field test
+                            Try Bolt free
                         </a>
                         <a
                             href="https://app.bolttms.com/"
